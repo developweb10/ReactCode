@@ -1,0 +1,818 @@
+/* --- VARIABLES --- */
+:root {
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --bg-color: #f5f7fa;
+  --container-bg: #ffffff;
+  --border-color: #e4e7eb;
+  --text-primary: #1a202c;
+  --text-secondary: #718096;
+  --brand-color: #3b82f6;
+  --brand-color-dark: #2563eb;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --purple-light: #f0f5ff;
+  --purple-dark: #5b21b6;
+  --purple-border: #c3dafe;
+  --green-light: #e6fffa;
+  --green-dark: #0f766e;
+  --green-border: #5eead4;
+  --red-light: #fff1f2;
+  --red-dark: #be123c;
+  --red-border: #f9a8d4;
+  --yellow-light: #fefce8;
+  --yellow-dark: #a16207;
+  --yellow-border: #facc15;
+  --blue-light: #eff6ff;
+  --blue-dark: #1e40af;
+  --blue-border: #93c5fd;
+  --admin1-color: #7c3aed;
+  --admin2-color: #2563eb;
+  --date-divider-color: #cbd5e0;
+}
+
+/* --- BASE STYLES --- */
+.notificationPage {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  color: var(--text-primary);
+  overflow: hidden;
+  box-sizing: border-box;
+
+  &.dark {
+    --bg-color: #111827;
+    --container-bg: #1f2a44;
+    --border-color: #374151;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --date-divider-color: #4a5568;
+
+    .container {
+      background-color: var(--container-bg);
+      border-color: var(--border-color);
+    }
+
+    .sidebar {
+      border-right-color: var(--border-color);
+    }
+
+    .sidebarHeader {
+      border-bottom-color: var(--border-color);
+    }
+
+    .searchInput {
+      background-color: #2d3748;
+      color: var(--text-primary);
+    }
+
+    .workforceItem:hover {
+      background-color: #2d3748;
+    }
+
+    .workforceItemActive {
+      background-color: var(--brand-color);
+      color: #ffffff;
+    }
+
+    .showAllButton {
+      background-color: #2d3748;
+      color: var(--text-primary);
+      &:hover {
+        background-color: #4b5563;
+      }
+    }
+
+    .mainHeader {
+      border-bottom-color: var(--border-color);
+    }
+
+    // Adjusted message background colors for dark mode to be distinct
+    .messageStatusUpdate {
+      background-color: #2d3748;
+      color: var(--text-primary);
+      border: 1px solid #374151;
+    }
+
+    .messageAdminBroadcast {
+      background-color: #1a202c; // Darker background for admin messages
+      color: var(--text-primary);
+      border: 1px solid #374151;
+    }
+
+    .messageSystemAction {
+      background-color: #1f2a44; // Should be container-bg
+      color: var(--yellow-dark);
+      border: 1px solid #374151;
+    }
+
+    .messageInput {
+      background-color: #2d3748;
+      color: var(--text-primary);
+      border-color: #374151;
+    }
+
+    .sendButton {
+      background-color: var(--brand-color);
+      &:hover {
+        background-color: var(--brand-color-dark);
+      }
+    }
+
+    .sendToButton {
+      background-color: #2d3748;
+      color: var(--text-primary);
+      &:hover {
+        background-color: #4b5563;
+      }
+    }
+
+    .dropdownMenu {
+      background-color: #2d3748;
+      border-color: #374151;
+      button {
+        color: var(--text-primary);
+        &:hover {
+          background-color: #4b5563;
+        }
+      }
+    }
+
+    .deliveredByFooter {
+      color: var(--text-primary);
+    }
+
+    .dateDivider {
+      span {
+        background-color: var(--container-bg);
+        color: var(--text-secondary);
+      }
+    }
+
+    .sendToDisplay {
+      color: var(--text-secondary);
+    }
+  }
+}
+
+/* --- CONTAINER --- */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  height: 100%;
+  background-color: var(--container-bg);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px var(--shadow-color);
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 320px;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--container-bg);
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+.sidebarHeader {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.sidebarTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.showAllButton {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--container-bg);
+  background-color: var(--brand-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--brand-color-dark);
+    transform: translateY(-1px);
+  }
+}
+
+.searchContainer {
+  padding: 1.5rem 2rem;
+  flex-shrink: 0;
+}
+
+.searchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.searchIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--text-secondary);
+  margin-right: 0.75rem;
+}
+
+.searchInput {
+  flex-grow: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.workforceList {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 0 1rem;
+}
+
+.workforceItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: var(--bg-color);
+    transform: translateX(4px);
+  }
+
+  &.workforceItemActive {
+    background-color: var(--brand-color);
+    color: #ffffff;
+
+    .workforceName,
+    .workforceTime {
+      color: #ffffff;
+    }
+  }
+}
+
+.avatar {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.workforceInfo {
+  flex-grow: 1;
+}
+
+.workforceName {
+  font-size: 1.6rem; // Increased size
+  font-weight: 700; // Bold
+  color: var(--text-primary);
+}
+
+.workforceTime {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+}
+
+/* --- MAIN --- */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--container-bg);
+}
+
+.mainHeader {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.mainTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.notificationActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bulkDeleteButton {
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--red-border);
+  border-radius: 8px;
+  background-color: var(--red-light);
+  color: var(--red-dark);
+  font-weight: 600;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+.upcomingHeaderBtn {
+  border: 1px solid #f4c20d;
+  background: #fffdf2;
+  color: #1e293b;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  span {
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: #ffcb0b;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+  }
+
+  &:hover {
+    background: #fff8d6;
+  }
+}
+
+.chatContainer {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dateDivider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--date-divider-color);
+  }
+
+  &:not(:empty)::before {
+    margin-right: .5em;
+  }
+
+  &:not(:empty)::after {
+    margin-left: .5em;
+  }
+
+  span {
+    background-color: var(--container-bg);
+    padding: 0 0.5rem;
+    font-size: 1.3rem;
+  }
+}
+
+// System Action Messages - these are unique and should be full width
+.messageSystemAction {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-left: 4px solid var(--yellow-dark);
+  background-color: var(--yellow-light);
+  font-style: normal;
+  text-align: center;
+  font-size: 0.875rem;
+  padding: 1rem;
+  margin: 0.5rem auto; // Centered
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--shadow-color); // Consistent shadow
+  width: fit-content; // Only take as much width as needed
+  max-width: 80%; // But not too wide
+}
+
+.chatMessage {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 0.5rem 0;
+  width: 100%; // Ensure messages take full available width for alignment
+
+  &.alignRight {
+    justify-content: flex-end; // Align admin messages to the right
+    .messageContent {
+      border-top-right-radius: 4px; // Slight adjustment for bubble corner
+    }
+  }
+
+  &.alignLeft {
+    justify-content: flex-start; // Align personnel messages to the left
+    .messageContent {
+      border-top-left-radius: 4px; // Slight adjustment for bubble corner
+    }
+  }
+}
+
+.avatarContainer {
+  flex-shrink: 0;
+}
+
+.adminAvatar {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background-color: var(--brand-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.bellIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.messageContent {
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  flex-grow: 1; // Allows it to take available space
+  word-break: break-word; // Handle long words
+
+  &.messageStatusUpdate { // Styles for workforce messages
+    border-left: 4px solid var(--purple-dark);
+    background-color: var(--red-light);
+  }
+
+  &.messageAdminBroadcast { // Styles for admin messages
+    border-left: 4px solid var(--blue-dark);
+    background-color: var(--blue-light);
+
+    // Specific colors for mock admin IDs
+    &.admin1 {
+      border-left-color: var(--admin1-color);
+      background-color: var(--purple-light);
+    }
+
+    &.admin2 {
+      border-left-color: var(--admin2-color);
+      background-color: var(--blue-light);
+    }
+
+    // Styles for system_bot and system_auto, if they use this class
+    &.system_bot, &.system_auto {
+      border-left-color: var(--green-dark); // Example: green for system
+      background-color: var(--green-light);
+    }
+  }
+}
+
+.sendToDisplay {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 0.5rem; // Space between this and actual message text
+}
+
+.messageHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.senderName {
+  font-weight: 700; // Bold
+  font-size: 1.6rem; // Increased size
+  color: var(--text-primary);
+}
+
+.timestamp,
+.timestampSmall {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+}
+
+.messageText {
+  font-size: 1.3rem; // Increased size
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.deliveryStatusContainer {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.deliveryStatus {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.deliveredByFooter { // Renamed from adminNameFooter
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* --- FOOTER --- */
+.footer {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
+  background-color: var(--container-bg);
+  display: flex;
+  align-items: center;
+}
+
+.messageForm {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--bg-color);
+  padding: 0.75rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  flex-grow: 1;
+}
+
+.messageInput {
+  flex-grow: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  padding: 0.75rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.sendToDropdownContainer {
+  position: relative;
+  display: inline-block;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.sendToButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 01.3rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--bg-color);
+  }
+}
+
+.dropdownMenu {
+  position: absolute;
+  bottom: 100%;
+  left: -75px;
+  background-color: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  min-width: 200px;
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+
+  button {
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--bg-color);
+    }
+  }
+}
+
+.sendButton {
+  padding: 0.75rem;
+  color: #ffffff;
+  background-color: var(--brand-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.sendIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* --- RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  .notificationPage {
+    padding: 0;
+  }
+
+  .container {
+    border-radius: 0;
+  }
+
+  .sidebar {
+    padding: 1rem;
+  }
+
+  .sidebarHeader {
+    padding: 1.5rem;
+  }
+
+  .showAllButton {
+    padding: 0.5rem 1rem;
+  }
+
+  .mainHeader {
+    padding: 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .chatContainer {
+    padding: 1.5rem;
+  }
+
+  .messageContent {
+    max-width: 100%;
+  }
+
+  .footer {
+    padding: 1rem;
+  }
+
+  .messageForm {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  .messageInput {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .sendButton {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  .sendToDropdownContainer {
+    width: 100%;
+  }
+
+  .sendToButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dropdownMenu {
+    width: 100%;
+    position: static;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.mergeUploadButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #0056b3;
+  }
+
+  svg {
+    margin-top: -1px;
+  }
+}
+
+.configButton {
+  margin-left: 1rem;
+  padding: 8px 16px;
+  background: #ffc107;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.notificationCheckbox {
+  width: 16px;
+  height: 16px;
+  margin-top: 0.7rem;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.deleteNotificationButton {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--red-border);
+  border-radius: 8px;
+  background-color: var(--red-light);
+  color: var(--red-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+
+  &:hover {
+    background-color: #ffe4e6;
+  }
+}

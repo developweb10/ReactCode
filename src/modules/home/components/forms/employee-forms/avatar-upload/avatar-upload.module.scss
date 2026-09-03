@@ -1,0 +1,56 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.PreviewWrapper {
+  position: relative;
+  .ActionButtons {
+    position: absolute;
+    right: 6px;
+    bottom: 10px;
+  }
+  max-width: 200px;
+}
+.Preview {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.UploadWrapper {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding-left: 2%;
+}
+
+.Input {
+  display: none;
+}
+
+.AddButton {
+  background-color: $gray300;
+  color: $gray500;
+  padding: 6px 35px;
+  &:hover {
+    background-color: $gray400;
+    color: #fff;
+  }
+}
+
+.EditButton,
+.DeleteButton {
+  padding: 6px;
+  border-radius: 11px;
+  background-color: $gray300;
+  transition: background-color 0.3s;
+  box-shadow: $mainShadow;
+  &:hover {
+    background-color: $gray200;
+  }
+  svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+.DeleteButton {
+  margin-left: 8px;
+}

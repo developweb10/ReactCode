@@ -1,0 +1,164 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/mixins";
+@import "src/styles/sass/media";
+.TableWrapper {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  @include media("<tablet") {
+    padding: 0;
+  }
+}
+
+.TableContent {
+  position: relative;
+}
+
+.TableContainer {
+  @include horizontal-scroll();
+}
+
+.TableHeader {
+  display: flex;
+  align-items: center;
+  padding: 2rem 2rem 2rem 3rem;
+
+  @include media("<tablet") {
+    flex-direction: column;
+  }
+
+  .HeaderTitle {
+    font-size: 14px;
+    font-family: $medium;
+  }
+
+  .WeekSelectorWrapper {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    @include media("<tablet") {
+      margin: auto;
+      margin-top: 10px;
+    }
+    @include media("<smartphone") {
+      margin: auto;
+      flex-direction: column;
+    }
+  }
+}
+
+.TableHead {
+  th {
+    background-color: #faf9fa;
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+}
+
+.TableCell {
+  border-bottom: none;
+  padding: 11px;
+  @include text-scroll();
+  &.TableBodyCell {
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+
+  .HeadeCellText {
+    color: #8d8aa1;
+  }
+
+  .TrackedTimeCount {
+    color: $gray600;
+  }
+
+  .TotalTimeCount {
+    font-family: $medium;
+  }
+  &.NameCell {
+    padding-left: 30px;
+  }
+
+  &.Today {
+    border-left: 2px solid $secondaryYellow !important;
+    border-right: 2px solid $secondaryYellow;
+    background-color: $secondaryYellow;
+    .HeadeCellText {
+      color: $mainYellow;
+    }
+  }
+}
+
+.StickyEnd {
+  position: sticky;
+  right: 0;
+  z-index: 20;
+}
+
+.StickyStart {
+  position: sticky;
+  left: 0;
+  z-index: 20;
+}
+
+.SelectWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  .SelectedWeekText {
+    color: #828282;
+  }
+  .Paper {
+    box-shadow: 1px 3px 6px 3px rgba(215, 215, 215, 0.37);
+    padding: 10px;
+  }
+}
+
+.SelectBtn {
+  background-color: #f7f8f8;
+  padding: 7px 12px 7px 16px;
+  border-radius: 4px;
+  width: 200px;
+  justify-content: space-between;
+}
+
+.ArrowIcon {
+  width: 12px;
+  height: 12px;
+  transform: rotate(90deg);
+  path {
+    stroke: #d2d3d4;
+  }
+  transition: transform 0.4s;
+}
+.ArrowIconOpen {
+  transform: rotate(-90deg);
+}
+
+.TableTotalFooterRow {
+  td {
+    background: #000;
+    color: #fff;
+  }
+}
+
+.TableFooter {
+  border-top: 2px solid#F9FAFB;
+  td {
+    border-bottom: none;
+  }
+
+  .FooterTotal {
+    padding-left: 30px;
+  }
+}
+.TableFooterAddWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  .InfoText {
+    color: $gray500;
+    margin-left: auto;
+  }
+}

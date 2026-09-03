@@ -1,0 +1,132 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.PageWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+//  COLUMNS
+.FirstColumn {
+  padding-left: 23px !important;
+}
+
+.LocationNameColumnBody {
+  @include media(">tablet", "<=fullhd") {
+    p {
+      text-overflow: ellipsis;
+      width: 100px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
+.CurrentIssueColumn {
+  @include media(">tablet") {
+    white-space: normal !important;
+    p {
+      line-height: 1.2;
+    }
+  }
+}
+
+.InvestigationColumn {
+  @include media(">tablet") {
+    white-space: normal !important;
+    p {
+      line-height: 1.2;
+    }
+  }
+}
+
+.HRColumnBody,
+.HRColumn {
+  width: 120px;
+  min-width: 120px;
+}
+
+.HRColumnBody {
+  @include media(">tablet") {
+    white-space: normal !important;
+    p {
+      line-height: 1.2;
+    }
+  }
+}
+
+.StatusColumn {
+  width: 80px;
+  min-width: 80px;
+}
+
+.ActionsColumn {
+  width: 80px;
+  min-width: 80px;
+}
+
+.BoldCellContent {
+  font-family: Sf_Ui_Medium;
+}
+
+.GrayCellContent {
+  color: $gray600;
+}
+
+.Suspended {
+  justify-content: center;
+
+  svg {
+    padding: 2.3px;
+    width: 1.2em;
+    height: 1.2em;
+  }
+}
+
+.LocationName,
+.EmployeeName {
+  cursor: pointer;
+  &:hover {
+    color: $gray400;
+  }
+}
+
+.Badge {
+  min-width: auto;
+}
+
+.View {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  color: $gray600;
+  &:hover {
+    color: $gray400;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    box-shadow: 0 1px 0 $gray400;
+    z-index: 20;
+    height: 1px;
+    width: 100%;
+    bottom: 3px;
+    left: 0;
+  }
+}
+
+.ActionsMenuItem {
+  display: flex;
+  align-items: center;
+  .ActionsMenuItemIconWrapper {
+    background-color: $gray200;
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+  }
+  .ActionsMenuItemText {
+    margin-left: 1.2rem;
+  }
+}

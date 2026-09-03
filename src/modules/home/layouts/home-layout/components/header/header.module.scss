@@ -1,0 +1,103 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Container {
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  background-color: #fafafa;
+  padding: 1rem 7.5rem;
+
+  @include media("<laptop") {
+    display: none;
+  }
+
+  &.IsMobile {
+    display: none;
+  }
+}
+
+.Paper {
+  ul {
+    padding: 0;
+  }
+}
+
+.MobileContainer {
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  padding: 1rem;
+  background-color: $mainBlack;
+
+  @include media(">=laptop") {
+    display: none;
+  }
+
+  &.IsMobile {
+    display: flex;
+  }
+
+  .MenuButton {
+    display: flex;
+    margin-left: 1rem;
+
+    &.IsMobile {
+      display: flex;
+    }
+
+    .MenuIcon {
+      color: $mainYellow;
+    }
+  }
+
+  .AvatarWrap {
+    margin-right: 0px;
+  }
+
+  .LogoWrap {
+    @include media("<smartphone") {
+      svg {
+        width: 100px;
+      }
+    }
+  }
+}
+
+.LeftSection {
+  display: flex;
+  margin-right: auto;
+  align-items: center;
+}
+
+.RightSection {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+}
+
+.AvatarWrap {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.Avatar {
+  margin-right: 10px;
+}
+
+.ProfileSimpleInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.Name {
+  font-family: Sf_Ui_Bold;
+  color: #000;
+  font-size: 12px;
+}
+
+.Position {
+  color: #848484;
+  font-size: 10px;
+}

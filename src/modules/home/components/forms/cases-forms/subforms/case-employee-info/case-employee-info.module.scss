@@ -1,0 +1,26 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  @include media("<smartphone") {
+    flex-direction: column;
+  }
+  .Section {
+    flex-basis: 50%;
+    padding-left: 2%;
+    margin-top: 35px;
+    .SectionHeader {
+      font-size: 14px;
+      color: $gray500;
+    }
+    .SectionValue {
+      font-size: 14px;
+      margin-top: 15px;
+      font-family: Sf_Ui_Bold;
+    }
+  }
+}

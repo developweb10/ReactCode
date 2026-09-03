@@ -1,0 +1,41 @@
+@import "src/styles/sass/variables";
+
+.SearchInput {
+  input {
+    background-color: rgb(249, 249, 249);
+    padding: 9px 11px;
+    border-radius: 3px;
+    padding-left: 3rem;
+    color: $gray700;
+    transition: box-shadow 250ms;
+    &:focus {
+      box-shadow: 0 0 0 0.1rem $mainYellow;
+    }
+  }
+  transition: 0.4s;
+  position: relative;
+  .SearchIcon {
+    position: absolute;
+    left: 10px;
+  }
+
+  &.MobileSearchInput {
+    max-width: 40px;
+    .SearchIcon {
+      left: 15px;
+      cursor: pointer;
+    }
+  }
+  &.Focused {
+    max-width: 140px;
+    .SearchIcon {
+      left: 10px;
+    }
+    margin-left: 10px;
+  }
+
+  &.WithValue {
+    width: auto;
+    max-width: auto;
+  }
+}

@@ -1,0 +1,73 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Paper {
+  box-shadow: none;
+  padding: 20px;
+  width: 500px;
+  height: 100%;
+  @include media("<=smartphone") {
+    width: 100vw;
+  }
+}
+
+.DrawerHeader {
+  display: flex;
+  align-items: center;
+
+  .EditIconWrapper {
+    background-color: $gray200;
+    border-radius: 1rem;
+
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      width: 18px;
+      height: 18px;
+      margin-left: 2px;
+      margin-bottom: 2px;
+      path {
+        fill: $mainYellow;
+      }
+    }
+  }
+  .HeaderText {
+    font-size: 16px;
+    font-family: $medium;
+    margin-left: 10px;
+  }
+  .CloseButton {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background-color: $gray100;
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.DrawerBody {
+  position: relative;
+  .InputWrapper {
+    margin-top: 20px;
+    .InputLabel {
+      font-family: $medium;
+      margin-bottom: 5px;
+    }
+
+    input {
+      font-family: $medium;
+      color: #000;
+      -webkit-text-fill-color: #000 !important;
+    }
+  }
+}

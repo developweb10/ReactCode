@@ -1,0 +1,58 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.PageWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+// COLS
+
+.ColumnStoreName,
+.ColumnStoreNameBody {
+  padding-left: 23px !important;
+  width: 210px;
+  min-width: 220px;
+}
+.ColumnStoreNameBody {
+  p {
+    text-overflow: ellipsis;
+    width: 210px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.ColumnLocationContactBody {
+  max-width: 200px;
+  @include media("<=tablet") {
+    max-width: inherit;
+  }
+}
+
+.ColumnActions {
+  min-width: 70px;
+  width: 70px;
+}
+
+.ColumnGray {
+  color: $gray600;
+  font-family: Sf_Ui_Medium;
+}
+
+.ActionsMenuItem {
+  display: flex;
+  align-items: center;
+  .ActionsMenuItemIconWrapper {
+    background-color: $gray200;
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+  }
+  .ActionsMenuItemText {
+    margin-left: 1.2rem;
+  }
+}

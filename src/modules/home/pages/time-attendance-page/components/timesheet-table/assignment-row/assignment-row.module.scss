@@ -1,0 +1,63 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+@import "src/styles/sass/mixins";
+
+.TableCell {
+  border-bottom: none;
+  padding: 11px;
+  @include text-scroll();
+  &.TableBodyCell {
+    white-space: nowrap;
+    background-color: #fff;
+  }
+
+  .TrackedTimeCount {
+    color: #000;
+    padding-top: 19px;
+  }
+
+  .ExpectedTimeCount {
+    color: $gray600;
+  }
+
+  .TotalTimeCount {
+    padding-top: 19px;
+    font-family: $medium;
+  }
+
+  &.ActionsCell {
+    padding-top: 19px;
+  }
+  &.NameCell {
+    max-width: 170px;
+    padding-left: 30px;
+    .NameText {
+      text-overflow: ellipsis;
+      max-width: 100%;
+      overflow: hidden;
+    }
+  }
+  &.Today {
+    border-left: 2px solid $secondaryYellow !important;
+    border-right: 2px solid $secondaryYellow;
+  }
+}
+.Hoverable {
+  &:hover {
+    background-color: #faf9fa;
+    cursor: pointer;
+  }
+}
+.StickyEnd {
+  position: sticky;
+  right: 0;
+  z-index: 20;
+  box-shadow: -3px 2px 5px 0px rgba(174, 174, 174, 0.28);
+}
+
+.StickyStart {
+  position: sticky;
+  left: 0;
+  z-index: 20;
+  box-shadow: 3px 2px 5px 0px rgba(174, 174, 174, 0.28);
+}

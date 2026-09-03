@@ -1,0 +1,84 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Wrap {
+  padding: 30px 65px;
+
+  @include media("<=smartphone") {
+    padding: 0;
+  }
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  @include media("<smartphone") {
+    padding: 0;
+    display: block;
+  }
+  h5 {
+    justify-self: flex-start;
+    align-self: flex-start;
+    padding-left: 2%;
+  }
+
+  .ButtonsWrapper {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .InputWrapper {
+    width: 100%;
+
+    margin-top: 30px;
+    &:first-child {
+      margin-top: 10px;
+    }
+  }
+
+  .DateInput {
+    input {
+      padding: 10px 8px;
+    }
+  }
+
+  .PerDayFieldWrapper {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 30px;
+
+    &:first-child {
+      margin-top: 10px;
+    }
+    .PerDayInputGroup {
+      margin-left: 20px;
+      display: flex;
+      flex-grow: 1;
+      @include media("<smartphone") {
+        margin-left: 10px;
+      }
+      .PerDayInputWrapper {
+        flex-grow: 1;
+        &:first-child {
+          margin-right: 40px;
+          @include media("<smartphone") {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+    .DayText {
+      text-align: center;
+      font-family: $bold;
+      flex: 0 1 80px;
+      margin-bottom: 10px;
+      &.Today {
+        color: $mainYellow;
+      }
+    }
+  }
+}

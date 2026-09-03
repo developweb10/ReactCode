@@ -1,0 +1,36 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.CurrentDay {
+  border-left: 2px solid $mainYellow !important;
+  border-right: 2px solid $mainYellow;
+}
+.HeaderCell {
+  border-left: 0.5px solid $calendarBorderColor;
+  border-bottom: 0.5px solid $calendarBorderColor;
+  padding: 0;
+  background-color: $gray200;
+
+  .HeaderCellContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .DayNumber {
+      font-size: 1.5rem;
+      font-family: Sf_Ui_Bold;
+    }
+    .WeekDay {
+      font-size: 1.2rem;
+      color: $gray600;
+    }
+  }
+
+  &.WeekendCell {
+    background-color: $red100;
+    .DayNumber,
+    .WeekDay {
+      color: $red300;
+    }
+  }
+}

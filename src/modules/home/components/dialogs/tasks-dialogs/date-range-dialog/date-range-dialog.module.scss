@@ -1,0 +1,66 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Wrapper {
+  padding: 10px;
+  min-height: 570px;
+  @include media("<=tablet") {
+    min-height: auto;
+  }
+}
+
+.ContentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 50px;
+  @include media("<=tablet") {
+    padding: 0;
+  }
+}
+
+.DialogPaper {
+  max-width: map-get($breakpoints, "tablet");
+  border-radius: 8px;
+  @include media("<=smartphone") {
+    border-radius: 0;
+  }
+}
+
+.InputsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 30px 30px 30px;
+  border-bottom: 1px solid #eee;
+  .InputWrapper {
+    flex: 1;
+  }
+  .InputSeparator {
+    margin: 15px;
+    padding-top: 20px;
+  }
+  @include media("<=tablet") {
+    padding: 15px;
+  }
+}
+
+.Footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  margin-top: auto;
+  .ResetWrapper {
+    margin-left: 10px;
+
+    .ResetIcon {
+      width: 15px;
+      height: 15px;
+    }
+    .ResetText {
+      font-size: 14px;
+      margin-left: 5px;
+    }
+  }
+}

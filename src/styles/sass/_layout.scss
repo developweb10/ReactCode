@@ -1,0 +1,23 @@
+.wrapper {
+  flex: 1;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  padding: 2.2rem 3.5rem;
+  flex: 1;
+  background-color: $gray300;
+
+  @include media("<=tablet") {
+    padding: 2.2rem 1.2rem;
+  }
+}
+
+#cases-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+}

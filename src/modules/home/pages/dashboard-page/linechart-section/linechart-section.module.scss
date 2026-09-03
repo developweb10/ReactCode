@@ -1,0 +1,147 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.LineChartSection {
+  @include media("<tablet") {
+    flex-direction: column;
+  }
+  .Paper {
+    box-shadow: 1px 3px 6px 3px rgba(215, 215, 215, 0.37);
+    padding: 10px;
+    .PopoverFooter {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      .ResetWrapper {
+        margin-left: 10px;
+
+        .ResetIcon {
+          width: 15px;
+          height: 15px;
+        }
+        .ResetText {
+          font-size: 14px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .LineChartCard {
+    flex-grow: 1;
+    min-width: 0;
+    .Header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 50px;
+
+      .Period {
+        margin-right: 10px;
+      }
+      @include media("<tablet") {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        .Period {
+          margin-right: 5px;
+        }
+      }
+      .SelectWrapper {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+      .IconButton {
+        padding: 6px;
+      }
+    }
+
+    padding: 28px 50px 27px 31px;
+    display: flex;
+    flex-direction: column;
+    .Chart {
+      display: flex;
+      flex: 1;
+    }
+
+    .Date {
+      @include media("<laptop") {
+        font-size: 14px;
+      }
+
+      @include media("<tablet") {
+        font-size: 12px;
+      }
+      @include media("<smartphone") {
+        font-size: 11px;
+      }
+      @include media("<=phone") {
+        font-size: 9px;
+      }
+    }
+    @include media("<tablet") {
+      height: 300px;
+      padding: 28px 19px 27px 31px;
+    }
+
+    @include media("<smartphone") {
+      padding: 28px 10px;
+    }
+  }
+  .CaseTypeCard {
+    flex-basis: 350px;
+    padding: 30px;
+    @include media("<tablet") {
+      flex-basis: 100%;
+      padding: 20px;
+      padding-bottom: 30px;
+    }
+  }
+
+  .FleetSummaryCard {
+    flex-basis: 350px;
+    min-height: 260px;
+    padding: 30px;
+
+    img {
+      background: #fffae7;
+      padding: 10px;
+      width: 50px;
+      height: 50px;
+      margin: 0 0 10px;
+    }
+
+    p {
+      font-size: 15px;
+      font-family: "Sf_Ui_Semibold";
+    }
+
+    @include media("<tablet") {
+      flex-basis: 100%;
+      min-height: 170px;
+      padding: 20px;
+    }
+  }
+
+  .FleetSummaryStats {
+    border-top: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 16px;
+    padding-top: 16px;
+    width: 100%;
+  }
+
+  .FleetSummaryLine {
+    border-bottom: 1px dashed #ddd;
+    font-size: 15px;
+    padding: 8px 0;
+    width: 100%;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

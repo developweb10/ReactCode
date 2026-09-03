@@ -1,0 +1,232 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+@import "src/styles/sass/mixins";
+.SelectPaper {
+  width: 140px;
+
+  ul {
+    li {
+      color: #000;
+      font-family: Sf_Ui_Medium;
+      font-size: 13px;
+      padding-left: 24px;
+      @include media(">=fullhd") {
+        font-size: 15px;
+      }
+      &[aria-selected="true"] {
+        background-color: inherit;
+        background: inherit;
+        box-shadow: 3px 0px 0px $mainYellow inset;
+        &:hover {
+          background-color: $secondaryYellow;
+          box-shadow: 3px 0px 0px $mainYellow inset;
+        }
+      }
+      &[data-focus="true"],
+      &:hover {
+        background-color: $secondaryYellow;
+        box-shadow: 3px 0px 0px $mainYellow inset;
+      }
+    }
+  }
+}
+
+.Header {
+  border-bottom: 1px solid #ebeff2;
+}
+
+.HeaderTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include media("<tablet") {
+    flex-direction: column-reverse;
+  }
+
+  .TasksNumberText,
+  .ShowText {
+    color: #8f8d8b;
+    @include media(">=fullhd") {
+      font-size: 16px;
+    }
+    @include media("<tablet") {
+      font-size: 11px;
+    }
+  }
+
+  .ShowText {
+    margin-right: 5px;
+  }
+  .PeriodSelectWrapper {
+    display: flex;
+    align-items: center;
+  }
+  .ArrowIcon {
+    color: rgba(0, 0, 0, 0.54);
+    right: 4px;
+    position: absolute;
+    pointer-events: none;
+    width: 0.7em;
+    height: 0.7em;
+  }
+  .Select {
+    color: $mainYellow;
+    @include media("<smartphone") {
+      font-size: 11px;
+    }
+    &:focus {
+      background: transparent;
+    }
+  }
+}
+
+.TasksProgress {
+  margin: 20px 0;
+  height: 6px;
+  background-color: #f2f2f2;
+  border-radius: 6px;
+  .ProgressBar {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background: $mainYellow;
+  }
+}
+
+.CalendarWrapper {
+  position: relative;
+  width: 80%;
+  .SelectedDayText {
+    @include media(">=fullhd") {
+      font-size: 20px;
+    }
+    @include media("<smartphone") {
+      font-size: 13px;
+    }
+  }
+  @include media("<smartphone") {
+    width: 100%;
+  }
+  .ArrowControl {
+    cursor: pointer;
+    position: absolute;
+    top: 35%;
+    padding: 23px 10px;
+    width: 30px;
+    height: 77px;
+    border-radius: 5px;
+    z-index: 100;
+    &.ArrowControlLeft {
+      left: -20px;
+
+      transform: rotate(180deg);
+    }
+    &.ArrowControlRight {
+      right: -20px;
+    }
+    &:hover {
+      background: $gray200;
+    }
+
+    @include media("<smartphone") {
+      padding: 15px 3px;
+      width: 17px;
+      height: 50px;
+      &.ArrowControlLeft {
+        left: -15px;
+      }
+      &.ArrowControlRight {
+        right: -15px;
+      }
+    }
+  }
+  .WeekWrapper {
+    overflow: hidden;
+    margin: auto;
+    width: 100%;
+  }
+  .Calendar {
+    display: flex;
+    margin: 40px 0;
+    justify-content: space-between;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    @include media("<tablet") {
+      margin: 20px 0;
+      padding: 0 10px;
+    }
+
+    @include horizontal-scroll();
+    .CalendarCell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 80px;
+      @include media("<tablet") {
+        min-width: auto;
+      }
+      .CalendarDayName {
+        font-family: $regular;
+        font-size: 13px;
+        letter-spacing: 0.7px;
+        color: $gray400;
+        @include media("<smartphone") {
+          font-size: 13px;
+        }
+      }
+      .CalendarDayNumber {
+        font-size: 12px;
+        margin-top: 7px;
+        width: 24px;
+        height: 24px;
+        line-height: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include media("<smartphone") {
+          font-size: 12px;
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      @include media(">fullhd") {
+        .CalendarDayName {
+          font-family: $medium;
+          font-size: 18px;
+          color: $gray400;
+        }
+        .CalendarDayNumber {
+          font-size: 16px;
+          margin-top: 7px;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      &.IsToday {
+        .CalendarDayName,
+        .CalendarDayNumber {
+          color: $mainYellow;
+        }
+      }
+      &.IsSelected {
+        .CalendarDayNumber {
+          color: #fff;
+          background-color: $mainYellow;
+          border-radius: 50%;
+        }
+      }
+      &:hover {
+        cursor: pointer;
+        .CalendarDayNumber {
+          color: #fff;
+          background-color: $mainYellow;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}

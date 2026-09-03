@@ -1,0 +1,193 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.MessagesHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h4 {
+    font-size: 16px;
+    font-family: Sf_Ui_Semibold;
+  }
+  .ArrowButton {
+    margin-left: 20px;
+    .ArrowIcon {
+      transform: rotate(90deg);
+      width: 11px;
+      height: 22px;
+
+      transition: transform 0.3s;
+      &.Expanded {
+        transform: rotate(270deg);
+      }
+    }
+  }
+
+  .MessagesCount {
+    font-size: 14px;
+    color: $gray600;
+    font-family: Sf_Ui_Light;
+  }
+}
+
+.MessagesList {
+}
+
+.MessagesForm {
+  position: relative;
+  .Label {
+    display: flex;
+    align-items: center;
+    .LabelText {
+      font-size: 13px;
+      font-family: Sf_Ui_Medium;
+      margin-left: 10px;
+    }
+    margin-bottom: 10px;
+  }
+  textarea {
+    padding: 22px 22px 60px 22px;
+  }
+  .SelectedFiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+    margin: 10px 0 14px 0;
+    width: 100%;
+  }
+  .SelectedFile {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    padding: 7px 8px;
+    border: 1px solid $gray300;
+    border-radius: 7px;
+    color: $gray600;
+    font-size: 12px;
+    background-color: #fff;
+  }
+  .SelectedFilePreview {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 8px;
+  }
+  .SelectedFileIcon {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    fill: $gray500;
+    margin-right: 8px;
+  }
+  .SelectedFileInfo {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+
+    strong {
+      color: $gray600;
+      font-family: Sf_Ui_Medium;
+      font-size: 12px;
+      font-weight: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    small {
+      color: $gray500;
+      font-size: 11px;
+      margin-top: 2px;
+    }
+  }
+  .RemoveFileBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    margin-left: 6px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      fill: $gray500;
+    }
+  }
+  .TextAreaBottomBlock {
+    width: 100%;
+    padding: 5px;
+    background-color: #fbfbfb;
+    border: 1px solid #f4f4f4;
+    border-radius: 7px;
+    justify-content: flex-end;
+    display: flex;
+
+    .FileInput {
+      display: none;
+    }
+
+    .AttachBtn {
+      margin-right: auto;
+      padding: 7px 10px;
+      border-radius: 7px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        fill: $gray600;
+      }
+
+      .AttachText {
+        color: $gray600;
+        font-size: 14px;
+        margin-left: 5px;
+      }
+
+      &:hover {
+        background-color: #f4f4f4;
+      }
+    }
+
+    .SendMessageBtn {
+      background-color: #fbf6e3;
+      border-radius: 7px;
+      padding: 7px 10px;
+      &:hover {
+        background-color: #fdf5d5;
+      }
+      .SendMessageBtnText {
+        color: $mainYellow;
+        font-size: 14px;
+        margin-left: 5px;
+      }
+    }
+
+    .CancelBtn {
+      margin-right: 20px;
+      .CancelText {
+        color: $gray600;
+      }
+      &:hover {
+        .CancelText {
+          color: $gray400;
+        }
+      }
+    }
+  }
+}

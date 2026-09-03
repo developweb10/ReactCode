@@ -1,0 +1,1087 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 150px);
+  font-family: 'Inter', sans-serif;
+  color: #111827;
+}
+
+/* TOP CARDS */
+.topCardsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+.topCards {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  flex: 1;
+}
+
+.dateFilterWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.topDateFilterPicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 0.35rem 0.75rem;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.clearDateFilterBtn {
+  margin-top: 20px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  color: #64748b;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  width: auto;
+  // height: 46px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    color: #ef4444;
+    border-color: #ef4444;
+    background-color: #fee2e2;
+  }
+
+  &:disabled,
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f3f4f6;
+    border-color: #e5e7eb;
+    color: #9ca3af;
+  }
+}
+
+.dateNavBtn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border-radius: 50%;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: #0f172a;
+    background-color: #cbd5e1;
+  }
+}
+
+.datePickerInputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+}
+
+.datePickerIcon {
+  color: #475569;
+  flex-shrink: 0;
+}
+
+.topDateInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.clearDateBtn {
+  background: #cbd5e1;
+  border: none;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem;
+  border-radius: 50%;
+  transition: all 0.15s ease;
+  margin-left: 0.1rem;
+
+  &:hover {
+    color: #ef4444;
+    background-color: #fee2e2;
+  }
+}
+
+.card {
+  background-color: #111827;
+  color: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  flex-shrink: 0;
+  border: 2px solid transparent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.activeCard {
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.3);
+}
+
+.activeRosteredCard {
+  border-color: #111827;
+  box-shadow: 0 0 0 2px rgba(17, 24, 39, 0.3);
+}
+
+.rosteredCard {
+  background-color: #fbbf24;
+  color: #111827;
+}
+
+.cardTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.cardValue {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  width: max-content;
+}
+
+.rosteredCard .cardValue {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.cardAbbrev {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.rosteredCardText {
+  font-size: 1rem;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  text-align: right;
+  line-height: 1.2;
+}
+
+/* MAIN CONTENT */
+.mainContent {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  gap: 1.5rem;
+}
+
+.wavesArea {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wavesHeaderContainer {
+  width: 100%;
+  overflow: hidden;
+}
+
+.wavesHeader {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.waveTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.waveName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.timeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  color: #4b5563;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.wavesGridContainer {
+  width: 100%;
+  overflow: hidden;
+}
+
+.wavesGrid {
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  width: 100%;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.waveColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 400px;
+}
+
+.dropZone {
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6b7280;
+  background-color: #f9fafb;
+}
+
+.driverCard {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.1rem 1.25rem;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  position: relative;
+}
+
+.driverCardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.driverName {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.thumbIcon {
+  color: #10b981;
+  font-size: 1.25rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+.pendingIcon {
+  color: #f97316;
+  font-size: 1.25rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+.removeIcon {
+  color: #9ca3af;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: #ef4444;
+  }
+}
+
+.driverCardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.driverCardBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.driverCardBottomRight {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.confirmedBadge {
+  background-color: #61a146;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.pendingBadge {
+  background-color: #f97316;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.checkMark {
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.driverDetails {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 1.2rem;
+  color: #374151;
+  align-items: center;
+}
+
+.vanReg {
+  font-family: 'Inter', monospace;
+  font-weight: 600;
+  background: #e5e7eb;
+  color: #1f2937;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 1.2rem;
+}
+
+.vanRegContainer {
+  display: inline-flex;
+  align-items: center;
+  background: #e5e7eb;
+  border-radius: 4px;
+  padding-right: 0.25rem;
+
+  .vanReg {
+    background: none;
+    padding-right: 0.15rem;
+  }
+}
+
+.unassignVanIcon {
+  color: #ef4444;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0 0.25rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    color: #b91c1c;
+    transform: scale(1.15);
+  }
+}
+
+.removeIcon {
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    color: #ef4444;
+    transform: scale(1.1);
+  }
+}
+
+.serviceBadge {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background-color: #fef9c3;
+  color: #854d0e;
+  border: 1px solid #fef08a;
+}
+
+.statusRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-top: 0.25rem;
+}
+
+.confirmedStatus {
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.timestamp {
+  color: #9ca3af;
+  font-size: 1.2rem;
+}
+
+/* SIDEBAR OVERVIEW */
+.overviewSidebar {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.sidebarDateFilterContainer {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sidebarDateLabel {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.overviewTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.circularChart {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 2rem;
+}
+
+.chartSvg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.chartBg {
+  fill: none;
+  stroke: #f3f4f6;
+  stroke-width: 3.8;
+}
+
+.chartValue {
+  fill: none;
+  stroke: #10b981;
+  stroke-width: 3.8;
+  stroke-linecap: round;
+  stroke-dasharray: 100 100;
+}
+
+.chartText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.chartNumber {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1;
+}
+
+.chartLabel {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #6b7280;
+  line-height: 1;
+}
+
+.statsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  color: #4b5563;
+  align-items: center;
+}
+
+.statRow.bold {
+  font-weight: 600;
+  color: #111827;
+}
+
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.dot.green {
+  background-color: #10b981;
+}
+
+.dot.yellow {
+  background-color: #fbbf24;
+}
+
+.dot.red {
+  background-color: #ef4444;
+}
+
+.divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 1.5rem 0;
+}
+
+.quotaList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quotaRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  color: #4b5563;
+}
+
+/* BOTTOM PANELS */
+.bottomPanels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.panel {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.panelHeader.yellow {
+  background-color: #fef9c3;
+}
+
+.panelHeader.green {
+  background-color: #f0fdf4;
+}
+
+.panelHeader.blue {
+  background-color: #eff6ff;
+}
+
+.panelTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.countBadge {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.countBadge.yellow {
+  background-color: #fbbf24;
+  color: #111827;
+}
+
+.countBadge.green {
+  background-color: #10b981;
+}
+
+.countBadge.blue {
+  background-color: #3b82f6;
+}
+
+.selectedCountBadge {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: #10b981;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.panelFilterRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #fafafa;
+
+  .panelSearch {
+    padding: 0;
+    border-bottom: none;
+    background-color: transparent;
+  }
+}
+
+.panelSearch {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #fafafa;
+}
+
+.panelSearch input {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  outline: none;
+  font-size: 1.2rem;
+  padding: 0.6rem 0.85rem;
+  color: #111827;
+  font-weight: 500;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.panelSearch input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+.panelDateFilter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:focus-within {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+  }
+}
+
+.dateIcon {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.dateLabel {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #4b5563;
+  white-space: nowrap;
+}
+
+.dateInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #111827;
+  width: 100%;
+  cursor: pointer;
+}
+
+.panelList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  max-height: 350px;
+}
+
+.panelItem {
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 1.2rem;
+  font-weight: 600;
+  justify-content: space-between;
+  transition: background-color 0.15s ease;
+}
+
+.panelItem:hover {
+  background-color: #f9fafb;
+}
+
+.panelItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+  user-select: none;
+}
+
+.checkboxWrapper:hover {
+  background-color: rgba(16, 185, 129, 0.12);
+}
+
+.checkboxChecked {
+  color: #10b981;
+}
+
+.checkboxUnchecked {
+  color: #9ca3af;
+}
+
+.driverNameText {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #111827;
+  letter-spacing: -0.01em;
+}
+
+.panelItemRight {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #4b5563;
+  font-size: 1.2rem;
+}
+
+.badge {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+}
+
+.badge.std {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.badge.sv {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.badge.mv {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.statusPill {
+  border: 1px solid #e5e7eb;
+  padding: 0.35rem 0.75rem;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.statusPill.confirmed {
+  color: #10b981;
+  border-color: #10b981;
+  background-color: #f0fdf4;
+}
+
+.statusPill.pending {
+  color: #f97316;
+  border-color: #f97316;
+  background-color: #fff7ed;
+}
+
+.vanItem {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #111827;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.vanAvailable {
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.vanAssignmentBox {
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  margin: 1rem;
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.lockMessage {
+  background-color: #f3f4f6;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #4b5563;
+  margin-top: auto;
+  border-top: 1px solid #e5e7eb;
+}
+
+.panelFooterLink {
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #374151;
+  font-weight: 600;
+  border-top: 1px solid #e5e7eb;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+.panelFooterLink:hover {
+  background-color: #f9fafb;
+}
+
+/* FOOTER */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  margin-top: auto;
+}
+
+.footerLeft {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.2rem;
+  color: #4b5563;
+  align-items: center;
+}
+
+.systemStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.footerLegend {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+.legendConfirmed {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.legendPending {
+  color: #f97316;
+  font-weight: 600;
+}
+
+.legendEdited {
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.footerRight {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.cancelBtn {
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.saveBtn {
+  background-color: #fbbf24;
+  color: #111827;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.saveBtn:hover {
+  background-color: #f59e0b;
+}
+
+.wavesContainerWrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+  position: relative;
+  width: 100%;
+}
+
+.gridNavBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+  color: #374151;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  outline: none;
+  padding: 0;
+
+  &.left {
+    left: -18px;
+  }
+
+  &.right {
+    right: -18px;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: #f3f4f6;
+    color: #111827;
+    border-color: #9ca3af;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  &:disabled {
+    color: #d1d5db;
+    background-color: #f9fafb;
+    border-color: #e5e7eb;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}

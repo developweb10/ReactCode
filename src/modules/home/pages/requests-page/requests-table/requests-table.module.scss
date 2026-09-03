@@ -1,0 +1,107 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.PageWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.GrayColumn {
+  color: $gray600;
+}
+
+.RequestTypeColumn {
+  font-size: 13px;
+
+  @include media(">tablet") {
+    padding-left: 15px;
+  }
+}
+.RequestTypeHeader {
+  @include media(">tablet") {
+    padding-left: 25px !important;
+  }
+}
+
+.PeriodColumn,
+.RequestTypeColumn {
+  font-family: Sf_Ui_Medium;
+}
+
+.UserSurname,
+.UserRole,
+.UserName,
+.CreationDate,
+.PeriodDate,
+.Note {
+  font-family: Sf_Ui_Medium;
+  color: $gray500;
+  font-size: 1.3rem;
+}
+
+.ViewText {
+  position: relative;
+  &.Underline {
+    cursor: pointer;
+    display: inline-block;
+    &:after {
+      content: "";
+      position: absolute;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.349);
+      z-index: 20;
+      height: 1px;
+      width: 100%;
+      bottom: 3px;
+      left: 0;
+    }
+    &:hover {
+      color: $gray400;
+      &:after {
+        box-shadow: 0 1px 0 $gray400;
+      }
+    }
+  }
+}
+
+.PeriodCell {
+  min-width: 120px;
+}
+.ReasonCell {
+  min-width: 110px;
+  width: 110px;
+}
+.RequestActionsCell {
+  min-width: 110px;
+  width: 110px;
+  .RequestActions {
+    display: flex;
+    justify-content: flex-end;
+    .ActionButton {
+      padding: 0.3rem 1.3rem;
+      margin-left: 7px;
+    }
+
+    .EditButton,
+    .DeleteButton {
+      padding: 6px;
+      border-radius: 11px;
+      background-color: $gray300;
+      transition: background-color 0.3s;
+      &:hover {
+        background-color: $gray200;
+      }
+      svg {
+        width: 17px;
+        height: 17px;
+      }
+    }
+    .DeleteButton {
+      margin-left: 8px;
+    }
+  }
+}
+
+.BadgeCellWrapper {
+  display: flex;
+  justify-content: center;
+}

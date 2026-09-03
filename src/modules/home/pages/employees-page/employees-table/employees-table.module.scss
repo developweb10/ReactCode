@@ -1,0 +1,53 @@
+@import "src/styles/sass/variables";
+
+.PageWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+// COLS
+
+.ColumnIDCell {
+  min-width: 110px;
+  width: 110px;
+  padding-left: 30px;
+}
+
+.ActionsCell {
+  width: 70px;
+  min-width: 70px;
+}
+
+.BackButton {
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+.BackIcon {
+  transform: rotate(90deg);
+  margin-right: 0.7rem;
+}
+.ColumnName {
+  font-family: Sf_Ui_Medium;
+}
+
+.ColumnPosition {
+  color: $gray600;
+}
+
+.ActionsMenuItem {
+  display: flex;
+  align-items: center;
+  .ActionsMenuItemIconWrapper {
+    background-color: $gray200;
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+  }
+  .ActionsMenuItemText {
+    margin-left: 1.2rem;
+  }
+}

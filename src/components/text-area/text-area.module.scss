@@ -1,0 +1,53 @@
+@import "src/styles/sass/variables";
+
+.Root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.TextArea {
+  background-color: $gray200;
+  padding: 0;
+  border-radius: 7px;
+  width: 100%;
+  textarea {
+    background-color: #fbfbfb;
+    padding: 12px;
+    border: 1px solid $gray300;
+    border-radius: 7px;
+    width: 100%;
+    &:focus,
+    &:active {
+      border: 1px solid $mainYellow;
+    }
+    font-size: 14px;
+
+    &::placeholder {
+      color: $gray700;
+    }
+    &:disabled {
+      -webkit-text-fill-color: $gray700 !important;
+      color: $gray700;
+      cursor: not-allowed;
+      &::placeholder {
+        -webkit-text-fill-color: #fbfbfb !important;
+        color: #fbfbfb !important;
+      }
+    }
+  }
+}
+
+.Label {
+  margin-bottom: 8px;
+  display: block;
+  font-size: 14px;
+  color: $gray400;
+}
+
+.LabelAsterix {
+  color: $mainYellow;
+}
+
+.Error {
+  color: $red400;
+}

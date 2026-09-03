@@ -1,0 +1,183 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.Wrapper {
+  padding: 30px;
+  position: relative;
+  padding: 40px 80px 40px 80px;
+  @include media("<=tablet") {
+    border-radius: 0;
+    padding: 15px;
+  }
+}
+
+.Heading {
+  display: flex;
+
+  .IconWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .HolidayIcon,
+    .SicknessIcon {
+      padding: 12px;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+    }
+
+    .HolidayIcon {
+      background-color: $green300;
+      padding: 0.4rem;
+      svg {
+        position: relative;
+        top: -2px;
+        right: -1px;
+        width: 33px;
+        height: 33px;
+      }
+    }
+    .SicknessIcon {
+      background-color: $mainYellow;
+      padding: 0.65rem;
+      svg {
+        width: 28px;
+        height: 28px;
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+  .Title {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    .TitleTextHeader {
+      font-size: 1.8rem;
+      font-family: Sf_Ui_Semibold;
+      margin-bottom: 10px;
+    }
+
+    .TitleTextSub {
+      font-size: 1.2rem;
+      color: $gray600;
+      font-family: Sf_Ui_Light;
+      margin-top: 2px;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+.Body {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  .MainSection {
+    display: flex;
+    @include media("<=tablet") {
+      flex-direction: column;
+    }
+  }
+  .MainRequestInfo {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 50%;
+
+    @include media("<=tablet") {
+      order: 2;
+      padding: 20px;
+    }
+
+    @include media("<=smartphone") {
+      padding: 0px;
+    }
+
+    .DatesWrapper,
+    .UserInfo {
+      display: flex;
+      margin-right: 120px;
+      justify-content: space-between;
+      @include media("<=smartphone") {
+        margin-top: 30px;
+        margin-right: 80px;
+      }
+      .BlockWrapper {
+        display: flex;
+        flex-direction: column;
+        @include media("<=smartphone") {
+          &:last-child {
+            margin-left: 70px;
+          }
+        }
+        .BlockLabel {
+          color: $gray500;
+          font-size: 14px;
+        }
+        .BlockValue {
+          margin-top: 15px;
+          .Date {
+            font-family: Sf_Ui_Medium;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+    .UserInfo {
+      margin-bottom: 25px;
+    }
+  }
+
+  .RequestNote {
+    .NoteLabel {
+      color: $gray500;
+      font-size: 14px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+    .NoteValue {
+      overflow-wrap: break-word;
+      font-size: 13px;
+      font-family: Sf_Ui_Medium;
+      line-height: 23px;
+      padding-right: 50px;
+      @include media("<=tablet") {
+        padding-right: 0px;
+      }
+    }
+  }
+}
+
+.DateInput {
+  background-color: #fbfbfb;
+  border: 1px solid $gray300;
+  border-radius: 7px;
+  padding: 10px 12px;
+  width: 100%;
+  &:focus,
+  &:active {
+    border: 1px solid $mainYellow;
+    outline: none;
+  }
+  &::placeholder {
+    color: $gray400;
+  }
+}
+
+.ButtonsWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+.SaveButton {
+  margin-left: 20px;
+}
+.Errors {
+  font-size: 12px;
+  color: $red400;
+  margin-top: 4px;
+  margin-left: 3px;
+}

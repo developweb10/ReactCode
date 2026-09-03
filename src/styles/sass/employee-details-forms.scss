@@ -1,0 +1,33 @@
+#employee-details-forms {
+  .input-group {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1400px;
+    align-self: center;
+  }
+  .input-wrap {
+    padding: 1% 2%;
+    min-width: 140px;
+    flex-basis: 50%;
+    margin-top: 10px;
+    @include media("<=smartphone") {
+      flex-basis: 100%;
+    }
+  }
+
+  .MuiSelect-select {
+    padding: 10px;
+    color: $secondaryBlack !important;
+  }
+  @include media("<=smartphone") {
+    .button-primary {
+      width: 100%;
+    }
+  }
+  .MuiDivider-root {
+    background-color: $gray200;
+    width: 100%;
+    margin: 27px 0 15px 0px;
+  }
+}

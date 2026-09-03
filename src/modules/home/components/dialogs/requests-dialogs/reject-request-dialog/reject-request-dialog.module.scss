@@ -1,0 +1,106 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  justify-content: center;
+  position: relative;
+
+  @include media("<=smartphone") {
+    border-radius: 0;
+  }
+}
+
+.HeadingWrapper {
+  padding: 40px 80px 40px 80px;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  @include media("<=smartphone") {
+    padding: 0px 10px 10px 10px;
+  }
+}
+
+.DialogPaper {
+  max-width: map-get($breakpoints, "smartphone");
+  border-radius: 8px;
+  @include media("<=smartphone") {
+    border-radius: 0;
+  }
+}
+
+.IconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .Icon {
+    background-color: #fcf2cb;
+    padding: 12px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.TitleText {
+  display: inline-block;
+  margin: 20px 0;
+}
+
+.Card {
+  background-color: #fbfbfb;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 7px;
+  .CardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .TypeWrapper {
+      font-family: Sf_Ui_Semibold;
+      font-size: 16px;
+    }
+    .BadgeWrapper {
+      margin-left: 60px;
+    }
+  }
+  .CardBody {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    .UserName {
+      display: inline-block;
+      margin-bottom: 7px;
+      font-size: 16px;
+    }
+    .RequestPeriod {
+      font-family: Sf_Ui_Medium;
+      color: $gray500;
+      font-size: 13px;
+    }
+  }
+}
+
+.ReasonLabel {
+  color: $gray400;
+  font-size: 14px;
+  margin: 18px 0 8px 0;
+}
+
+.ButtonsWrapper {
+  align-self: center;
+  margin-top: 40px;
+}
+
+.RejectButton {
+  padding: 3px 40px;
+  margin-left: 10px;
+}

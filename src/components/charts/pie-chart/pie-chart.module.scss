@@ -1,0 +1,33 @@
+.PieWrapper {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+.LegendWrapper {
+  display: flex;
+  flex-direction: column;
+  .LegendItem {
+    display: flex;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+    align-items: flex-start;
+
+    .LegendSquare {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+    }
+    .LegendLabel {
+      display: flex;
+      flex-direction: column;
+      font-size: 12px;
+      margin-left: 8px;
+      align-items: flex-start;
+      .LegendPercentage {
+        color: #bcbcbc;
+        margin-top: 3px;
+      }
+    }
+  }
+}

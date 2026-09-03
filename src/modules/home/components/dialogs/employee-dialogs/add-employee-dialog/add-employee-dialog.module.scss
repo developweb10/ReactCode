@@ -1,0 +1,18 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Wrapper {
+  padding: 0;
+}
+
+.Heading {
+  padding: 30px 20px 0 20px;
+  background-color: $gray100;
+  @include media("<=smartphone") {
+    padding: 20px 10px 0px 20px;
+  }
+}
+
+.Body {
+  padding: 30px;
+}

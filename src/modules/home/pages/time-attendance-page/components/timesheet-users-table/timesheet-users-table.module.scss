@@ -1,0 +1,125 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+@import "src/styles/sass/mixins";
+.TableWrapper {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  @include media("<tablet") {
+    padding: 0 1rem;
+  }
+}
+
+.TableHeader {
+  display: flex;
+  align-items: center;
+  padding: 2rem 2rem 2rem 3rem;
+
+  @include media("<tablet") {
+    flex-direction: column;
+  }
+
+  .HeaderTitle {
+    font-size: 14px;
+    font-family: $medium;
+  }
+
+  .WeekSelectorWrapper {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    @include media("<tablet") {
+      margin: auto;
+      margin-top: 10px;
+    }
+    @include media("<smartphone") {
+      margin: auto;
+      flex-direction: column;
+    }
+  }
+}
+
+.TableHead {
+  th {
+    background-color: #faf9fa;
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+}
+
+.TableCell {
+  border-bottom: none;
+  padding: 11px;
+
+  &.TableBodyCell {
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+
+  .HeadeCellText {
+    color: #8d8aa1;
+  }
+}
+
+.SelectWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  .SelectedWeekText {
+    color: #828282;
+  }
+  .Paper {
+    box-shadow: 1px 3px 6px 3px rgba(215, 215, 215, 0.37);
+    padding: 10px;
+  }
+}
+
+.SelectBtn {
+  background-color: #f7f8f8;
+  padding: 7px 12px 7px 16px;
+  border-radius: 4px;
+  width: 200px;
+  justify-content: space-between;
+}
+
+.ArrowIcon {
+  width: 12px;
+  height: 12px;
+  transform: rotate(90deg);
+  path {
+    stroke: #d2d3d4;
+  }
+  transition: transform 0.4s;
+}
+.ArrowIconOpen {
+  transform: rotate(-90deg);
+}
+
+.BoldCellContent {
+  font-family: Sf_Ui_Medium;
+}
+.NameColumn {
+  padding-left: 30px !important;
+}
+.GrayCellContent {
+  color: $gray600;
+}
+
+.ActionColumn {
+  padding-right: 20px !important;
+}
+
+.NameColumn,
+.SurnameColumn {
+  width: 200px;
+  min-width: 200px;
+}
+
+.ActionsContent {
+  &:hover {
+    cursor: pointer;
+    color: $gray700;
+    font-family: Sf_Ui_Medium;
+  }
+}

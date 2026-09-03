@@ -1,0 +1,116 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.BodyForm {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  padding: 40px 80px 40px 80px;
+  @include media("<=smartphone") {
+    padding: 20px;
+  }
+}
+
+.DatesWrapper {
+  display: flex;
+  justify-content: space-between;
+  @include media("<=smartphone") {
+    flex-direction: column;
+  }
+}
+
+.Paper {
+  box-shadow: 1px 3px 6px 3px rgba(215, 215, 215, 0.37);
+  padding: 10px;
+  @include media("<=smartphone") {
+    max-width: 100%;
+    top: 0 !important;
+    left: 0 !important;
+    max-height: 100%;
+    padding-bottom: 50px;
+  }
+
+  .PopoverFooter {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    @include media("<=smartphone") {
+      position: fixed;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      padding: 10px;
+      z-index: 1000;
+    }
+    .ResetWrapper {
+      margin-left: 10px;
+
+      .ResetIcon {
+        width: 15px;
+        height: 15px;
+      }
+      .ResetText {
+        font-size: 14px;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.StartDate,
+.EndDate {
+  flex: 0 1 45%;
+  display: flex;
+  flex-direction: column;
+  .InputLabel {
+    color: $gray400;
+    font-size: 14px;
+    margin-bottom: 8px;
+    @include media("<=smartphone") {
+      margin: 10px 0;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    .Input {
+      border: 1.5px solid $mainYellow;
+    }
+  }
+}
+.DateInput {
+  background-color: #fbfbfb;
+  border: 1px solid $gray300;
+  border-radius: 7px;
+  padding: 10px 12px;
+  width: 100%;
+  &:focus,
+  &:active {
+    border: 1px solid $mainYellow;
+    outline: none;
+  }
+  &::placeholder {
+    color: $gray400;
+  }
+}
+
+.NotesInputLabel {
+  color: $gray400;
+  font-size: 14px;
+  margin: 18px 0 8px 0;
+}
+
+.ButtonsWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.Errors {
+  font-size: 12px;
+  color: $red400;
+  margin-top: 4px;
+  margin-left: 3px;
+}

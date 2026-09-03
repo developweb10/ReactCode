@@ -1,0 +1,30 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 40px 20px 40px;
+  flex: 1 1;
+  position: relative;
+  @include media("<smartphone") {
+    padding: 0;
+    display: block;
+  }
+  h5 {
+    justify-self: flex-start;
+    align-self: flex-start;
+    padding-left: 2%;
+  }
+  .ButtonsWrapper {
+    margin-top: 50px;
+    button {
+      &:disabled {
+        padding: 9px 56px;
+        background-color: $gray300;
+      }
+    }
+  }
+}

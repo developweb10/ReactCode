@@ -1,0 +1,17 @@
+@import "src/styles/sass/variables";
+.Button {
+  padding: 0.2rem;
+  background-color: $gray300;
+  border-radius: 0.8rem;
+  svg {
+    color: $gray400;
+    font-size: 2rem;
+  }
+}
+
+.Menu {
+  box-shadow: 0px 1px 7px -1px #8f8f8f6b;
+  ul {
+    padding: 0;
+  }
+}

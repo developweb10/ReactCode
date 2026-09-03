@@ -1,0 +1,61 @@
+@import "src/styles/sass/media";
+.Container {
+  padding: 16px 0 16px 40px;
+  color: white;
+  font-size: 13px;
+  transition: 0.2s;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  opacity: 0.4;
+  @include media("<=smartphone") {
+    padding: 1.2rem 3rem;
+  }
+
+  .ImageWrapper {
+    margin-right: 13px;
+    width: 15px;
+    height: 15px;
+    > div {
+      background-color: initial !important;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.11);
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+.ListItem {
+  padding: 16px 0 16px 65px;
+  color: white;
+  font-size: 13px;
+  transition: 0.2s;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  opacity: 0.4;
+  @include media("<=smartphone") {
+    padding: 1.2rem 3rem;
+  }
+  img {
+    margin-right: 13px;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.ListItemActive {
+  opacity: 1;
+}
+
+.Active {
+  background-color: rgba(255, 255, 255, 0.11);
+  opacity: 1;
+}

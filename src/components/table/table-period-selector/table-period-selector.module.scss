@@ -1,0 +1,67 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+@import "src/styles/sass/mixins";
+
+.Wrapper {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  @include media("<tablet") {
+    margin: auto;
+    margin-top: 10px;
+  }
+  @include media("<smartphone") {
+    margin: auto;
+    flex-direction: column;
+  }
+}
+.HeaderTitle {
+  font-family: $medium;
+}
+.SelectWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  .SelectedWeekText {
+    color: $gray700;
+  }
+  .Paper {
+    box-shadow: 1px 3px 6px 3px rgba(215, 215, 215, 0.37);
+    padding: 10px;
+    .PopoverFooter {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      .ResetWrapper {
+        margin-left: 10px;
+
+        .ResetIcon {
+          width: 15px;
+          height: 15px;
+        }
+        .ResetText {
+          font-size: 14px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+.SelectBtn {
+  background-color: #f2f2f2;
+  padding: 11px 12px 8px 12px;
+  border-radius: 9px;
+  width: 200px;
+  justify-content: space-between;
+}
+
+.ArrowIcon {
+  width: 12px;
+  height: 12px;
+  transform: rotate(90deg);
+}
+.ArrowIconOpen {
+  transform: rotate(-90deg);
+}

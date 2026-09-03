@@ -1,0 +1,27 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.AppealLabel {
+  font-family: Sf_Ui_Medium;
+  margin-bottom: 10px;
+  display: inline-block;
+  text-align: center;
+  .LabelAsterix {
+    color: $mainYellow;
+  }
+}
+
+.RadioWrapper {
+  display: flex;
+  flex-direction: column;
+
+  .RadioControlLabel {
+    font-size: 18px;
+    padding-left: 10px;
+    font-family: Sf_Ui_Light;
+    color: #797674;
+    &:first-child {
+      margin-bottom: 12px;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import "src/styles/sass/variables";
+
+.Img {
+  width: 100%;
+  height: 100%;
+}
+
+.xs {
+  width: 9px;
+  height: 9px;
+}
+
+.sm {
+  width: 14px;
+  height: 14px;
+}
+
+.md {
+  width: 18px;
+  height: 18px;
+}
+
+.lg {
+  width: 24px;
+  height: 24px;
+}
+
+.Wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: content-box;
+  & > div {
+    width: 100%;
+    height: 100%;
+    background-color: inherit !important;
+  }
+}
+.Filled {
+  padding: 10px;
+  background-color: $secondaryYellow;
+  border-radius: 50%;
+}

@@ -1,0 +1,127 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Wrapper {
+  width: 100%;
+
+  background: #ffffff;
+  box-shadow: 0px 4px 250px rgba(172, 175, 177, 0.21);
+  border-radius: 5px;
+}
+
+.Header {
+  padding: 20px;
+}
+
+.HeadingText {
+  font-size: 16px;
+  font-family: Sf_Ui_Semibold;
+}
+
+.TableError {
+  color: $red400;
+  font-size: 1.2rem;
+}
+
+.Footer {
+  padding: 10px 20px 20px 20px;
+  label {
+    color: #8d8aa1;
+    font-size: 13px;
+  }
+
+  .BtnWrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .AddBtn {
+    margin-bottom: 40px;
+  }
+
+  .AddText {
+    color: $mainYellow;
+  }
+}
+.TextArea {
+  textarea {
+    background-color: #fff;
+    border: 0.5px solid #d9d9d9;
+    font-size: 12px;
+  }
+}
+
+.DeleteBtn {
+  background-color: $gray300;
+  padding: 8px;
+  border-radius: 9px;
+  &:hover {
+    background-color: #eee;
+  }
+}
+
+.TextField {
+  background-color: #fff;
+  border: 0.5px solid #d9d9d9;
+  font-size: 12px;
+  border-radius: 5px;
+  input {
+    padding: 10px;
+  }
+
+  &.FieldError {
+    border: 0.5px solid $red400;
+  }
+}
+
+.Table {
+  .TableHead {
+    background: #faf9fa;
+    th {
+      border-bottom: none;
+      color: #8d8aa1;
+      padding: 13px;
+      &:first-child {
+        padding-left: 25px;
+      }
+    }
+  }
+  .TableBodyRow {
+    &:nth-child(even) {
+      background: #faf9fa;
+    }
+    td {
+      border-bottom: 1px solid #f1f0f1;
+      padding: 13px;
+      &:first-child {
+        padding-left: 25px;
+      }
+    }
+  }
+
+  @include media("<tablet") {
+    td,
+    th {
+      padding: 9px !important;
+    }
+  }
+  .CommentCell {
+    min-width: 130px;
+  }
+
+  .AreaCell {
+    min-width: 190px;
+  }
+
+  .MinMaxCell {
+    width: 75px;
+    min-width: 75px;
+  }
+  .RatingCell {
+    width: 110px;
+    min-width: 110px;
+  }
+  .DeleteCell {
+    width: 58px;
+    min-width: 58px;
+  }
+}

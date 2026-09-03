@@ -1,0 +1,35 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Badge {
+  padding: 0.4rem 0.6rem;
+  border-radius: 3px;
+  min-width: 87px;
+
+  text-align: center;
+}
+
+.BadgeTitle {
+  font-size: 13px;
+  font-family: Sf_Ui_Medium;
+}
+
+.Success {
+  background-color: $green100;
+  color: $green300;
+}
+
+.Error {
+  background-color: $red150;
+  color: $red300;
+}
+
+.Warning {
+  background-color: $secondaryYellow;
+  color: $mainYellow;
+}
+
+.Info {
+  background-color: $blue100;
+  color: $blue400;
+}

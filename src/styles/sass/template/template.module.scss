@@ -1,0 +1,11 @@
+@import "../variables.scss";
+
+:export {
+  primary: $mainYellow;
+  primaryDark: $darkYellow;
+  primaryLight: $lightYellow;
+  secondary: $mainBlack;
+  regular: $regular;
+  medium: $medium;
+  semibold: $semibold;
+}

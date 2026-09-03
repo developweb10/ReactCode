@@ -1,0 +1,35 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.Dialog {
+  padding: 0;
+}
+.DialogPaper {
+  max-width: map-get($breakpoints, "laptop");
+  border-radius: 8px;
+  @include media("<=tablet") {
+    border-radius: 0;
+  }
+}
+
+.DialogTitle {
+  background: #1f1a17;
+  color: #797674;
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+}
+
+.DialogTitleText {
+  font-size: 14px;
+}
+.DialogTitleEntityText {
+  padding-left: 5px;
+  color: #fff;
+}
+.CrossIcon {
+  margin-left: auto;
+  background-color: #2f2a28;
+}
+.DialogContent {
+  padding: 0;
+}

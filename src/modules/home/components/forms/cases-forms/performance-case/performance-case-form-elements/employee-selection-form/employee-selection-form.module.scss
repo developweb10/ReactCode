@@ -1,0 +1,24 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.CaseTypeWrapper {
+  width: 100%;
+  padding: 1% 2%;
+  margin-top: 10px;
+}
+
+.IconButton {
+  background-color: $gray200;
+
+  border-radius: 1rem;
+  padding: 0.7rem;
+  position: relative;
+}
+
+.MoreHrBtn {
+  margin-top: 15px;
+}
+
+.MoreHrText {
+  color: $mainYellow;
+}

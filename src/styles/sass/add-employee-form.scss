@@ -1,0 +1,22 @@
+#add-employee-form {
+  .input-group {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .input-wrap {
+    padding: 1% 2%;
+    min-width: 140px;
+    flex-basis: 50%;
+    margin-top: 10px;
+    @include media("<=smartphone") {
+      flex-basis: 100%;
+    }
+  }
+
+  @include media("<=smartphone") {
+    .button-primary {
+      width: 100%;
+    }
+  }
+}

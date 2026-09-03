@@ -1,0 +1,42 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/mixins";
+
+.IconButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+.ArrowIcon {
+  width: 10px;
+  height: 10px;
+  transform: rotate(90deg);
+}
+.ArrowIconOpen {
+  transform: rotate(-90deg);
+}
+.Paper {
+  ul {
+    @include vertical-scroll();
+    li {
+      color: #000;
+      font-family: Sf_Ui_Medium;
+      font-size: 13px;
+      padding-left: 24px;
+      &[aria-selected="true"] {
+        background-color: inherit;
+        background: inherit;
+        &:hover {
+          background-color: $secondaryYellow;
+          box-shadow: 3px 0px 0px $mainYellow inset;
+        }
+      }
+      &[data-focus="true"],
+      &:hover {
+        background-color: $secondaryYellow;
+
+        box-shadow: 3px 0px 0px $mainYellow inset;
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+.Heading {
+  margin-top: auto;
+}
+
+.DialogPaper {
+  border-radius: 8px;
+}
+
+.Title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .TitleText {
+    display: inline-block;
+    margin-top: 5px;
+  }
+}
+
+.ButtonsWrapper {
+  align-self: center;
+
+  margin-top: auto;
+  margin-bottom: 30px;
+}
+
+.RemoveButton {
+  padding: 3px 15px;
+  margin-left: 10px;
+}

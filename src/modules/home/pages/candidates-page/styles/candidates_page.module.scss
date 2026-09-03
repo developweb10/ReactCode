@@ -1,0 +1,367 @@
+/* candidates_page.module.scss */
+
+/* Sass Variables for calculations and easier theming */
+$primary-color: #ffc107;
+$secondary-color: #333;
+$bg-color-light: #f9f9f9;
+$border-color: #ddd;
+$white: #fff;
+$black: #000;
+$success-color: #28a745;
+$on-hold-color: #ffc107;
+$unsuccessful-color: #dc3545;
+$info-color: #17a2b8;
+
+/* CSS Variables for use in components (optional but good practice) */
+:root {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+  --bg-color-light: #{$bg-color-light};
+  --border-color: #{$border-color};
+  --white: #{$white};
+  --black: #{$black};
+  --success-color: #{$success-color};
+  --on-hold-color: #{$on-hold-color};
+  --unsuccessful-color: #{$unsuccessful-color};
+  --info-color: #{$info-color};
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-color-light);
+  color: var(--secondary-color);
+}
+
+.dashboard {
+  padding: 20px 40px;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin: 0;
+
+  img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.searchWrapper {
+  position: relative;
+}
+
+.searchInput {
+  padding: 10px 12px 10px 36px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  width: 250px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2);
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 16px;
+  color: var(--primary-color);
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+}
+
+.tab {
+  font-size: 12px;
+  font-weight: 500;
+  color: #888;
+  border: none;
+  background: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: var(--primary-color);
+  }
+}
+
+.tab.active {
+  color: var(--secondary-color);
+  border-bottom-color: var(--primary-color);
+  font-weight: 600;
+}
+
+.tableContainer {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-color-light);
+  padding: 15px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tableHeader .filter {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.rowCount select {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.candidatesTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.candidatesTable th,
+.candidatesTable td {
+  padding: 13px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.candidatesTable th {
+  background: #fafafa;
+  color: #555;
+  font-weight: 400;
+}
+.candidates_page_rowCount__2_gv5 {
+  font-size: 13px;
+  font-weight: 400;
+}
+.candidatesTable td {
+  color: #444;
+}
+
+.candidateRow:hover {
+  background-color: #fcfcfc;
+}
+
+.noData {
+  text-align: center;
+  padding: 30px;
+  color: #999;
+  font-style: italic;
+}
+
+.actionsCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusPill {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.statusOnHold {
+  background-color: lighten($on-hold-color, 40%);
+  color: darken($on-hold-color, 20%);
+}
+.statusUnsuccessful {
+  background-color: lighten($unsuccessful-color, 40%);
+  color: darken($unsuccessful-color, 20%);
+}
+.statusInProgress {
+  background-color: lighten($info-color, 40%);
+  color: darken($info-color, 20%);
+}
+.statusSuccessful {
+  background-color: lighten($success-color, 40%);
+  color: darken($success-color, 20%);
+}
+
+.viewCvButton {
+  padding: 6px 12px;
+  background-color: #e9ecef;
+  color: #495057;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background-color: #cfd4da;
+  }
+}
+
+.actionDropdownContainer {
+  position: relative;
+}
+
+.actionButton {
+  padding: 6px 12px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #ffd700;
+  }
+}
+
+.actionDropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 150px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.actionItem {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 15px;
+  border-top: 1px solid var(--border-color);
+  background-color: #fafafa;
+  gap: 10px;
+
+  button {
+    padding: 8px 12px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--secondary-color);
+
+    &:disabled {
+      background-color: #e0e0e0;
+      cursor: not-allowed;
+      color: #999;
+    }
+  }
+}
+
+.successfulActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #e6f7ff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #91d5ff;
+
+  span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #0050b3;
+  }
+}
+
+.generateExcelButton {
+  padding: 10px 20px;
+  background-color: var(--success-color);
+  color: var(--white);
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover:not(:disabled) {
+    // Use the Sass variable for the darken function
+    background-color: darken($success-color, 10%);
+  }
+
+  &:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+  }
+}
+
+.candidatesTable td input[type="checkbox"] {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 0 8px;
+  visibility: visible;
+  color:yellow;
+  appearance: auto;
+}
+
+.candidatesTable td:first-child {
+  width: 50px; /* Ensure enough space for the checkbox column */
+  text-align: center;
+}
+
+// input[type="checkbox"] {
+//   display: none;
+// }

@@ -1,0 +1,111 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.BackButton {
+  color: $gray500;
+  .BackIcon {
+    margin-right: 0.7rem;
+  }
+  .BackText {
+    font-size: 14px;
+  }
+}
+
+.ResetButton {
+  margin-left: auto;
+  margin-right: 45px;
+  color: $gray500;
+  &:hover {
+    .ResetText {
+      color: $gray400;
+    }
+  }
+  .DeleteIcon {
+    width: 15px;
+    height: 15px;
+  }
+  .ResetText {
+    margin-left: 5px;
+  }
+}
+
+.FilterButton {
+  background-color: $gray200;
+  margin-right: 1rem;
+  border-radius: 1rem;
+  padding: 0.9rem;
+  position: relative;
+
+  .FilterIconWrapper {
+    width: 100%;
+    display: flex;
+    align-items: inherit;
+    justify-content: inherit;
+  }
+  .FilterCount {
+    position: absolute;
+    font-size: 9px;
+    background-color: $mainYellow;
+    top: -8px;
+    right: -9px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fff;
+    border: 3px solid #fff;
+  }
+}
+.CloseButton {
+  position: absolute;
+  right: 17px;
+  img {
+    width: 1.8rem;
+  }
+}
+.FilterHeader {
+  font-size: 15px;
+  font-family: Sf_Ui_Medium;
+}
+
+.FilterDrawerWrapper {
+  padding: 20px;
+  width: 350px;
+  height: 100%;
+  @include media("<=smartphone") {
+    width: 100vw;
+  }
+}
+.FilterDrawerHeader {
+  display: flex;
+  align-items: center;
+  padding-bottom: 15px;
+  margin: 10px 0;
+}
+
+.FilterDrawerBody {
+  height: calc(100% - 54px);
+}
+.FilterDrawerHeaderSelected {
+  margin-bottom: 29px;
+  padding: 0;
+}
+
+.FilterDrawerList {
+  list-style: none;
+  padding: 0;
+}
+
+.FilterDrawerListItem {
+  padding: 3rem 0;
+  border-bottom: 2px solid $gray300;
+  display: flex;
+  align-items: center;
+  &:first-child {
+    border-top: 2px solid $gray300;
+  }
+}
+.ArrowButton {
+  margin-left: auto;
+}

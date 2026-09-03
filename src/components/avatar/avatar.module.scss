@@ -1,0 +1,26 @@
+@import "src/styles/sass/variables";
+
+.Avatar {
+  font-size: 13px;
+
+  &.medium {
+    font-size: 12px;
+    width: 35px;
+    height: 35px;
+  }
+  &.small {
+    font-size: 11px;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.HRAvatar {
+  color: #fff;
+  background-color: $green300;
+}
+
+.SUAvatar {
+  color: #fff;
+  background-color: $red300;
+}

@@ -1,0 +1,49 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Wrapper {
+  display: flex;
+  @include media("<=laptop") {
+    flex-direction: column;
+  }
+}
+
+.TimeSheetTableWrapper {
+  margin-right: 40px;
+  align-self: flex-start;
+  flex: 1;
+  overflow: auto;
+  @include media("<=laptop") {
+    margin-right: 0px;
+    align-self: stretch;
+  }
+}
+
+.RightColumn {
+  width: 325px;
+  @include media("<=laptop") {
+    width: 100%;
+    margin-top: 40px;
+  }
+  .ContractWrapper {
+    height: 170px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .ContractInfo {
+      font-size: 16px;
+      color: $gray500;
+    }
+    .ContractHours {
+      font-size: 40px;
+      font-family: $bold;
+    }
+  }
+}
+.Card {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 25px;
+}

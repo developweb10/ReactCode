@@ -1,0 +1,242 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+@import "src/styles/sass/mixins";
+
+.GroupNoticeboardSection {
+  flex-direction: column;
+
+  @include media("<tablet") {
+    flex-direction: column;
+  }
+}
+
+.NoticeboardCard {
+  flex-basis: 100%;
+  width: 100%;
+  min-width: 0;
+  min-height: 320px;
+  position: relative;
+}
+
+.NoticeboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.NoticeboardTitle {
+  color: $mainYellow;
+  font-family: "Sf_Ui_Semibold";
+  font-size: 32px;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+
+.TaskCount {
+  display: flex;
+  align-items: flex-start;
+  color: #000;
+
+  span {
+    font-family: "Sf_Ui_Semibold";
+    font-size: 32px;
+    line-height: 0.9;
+    margin-right: 8px;
+  }
+
+  strong {
+    font-family: "Sf_Ui_Semibold";
+    font-size: 15px;
+    line-height: 1.2;
+  }
+}
+
+.TaskTable {
+  width: 100%;
+  max-height: 220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 10px;
+  @include vertical-scroll();
+}
+
+.TableHeader,
+.TableRow {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 3.2fr) 0.85fr 0.8fr 0.9fr;
+  column-gap: 16px;
+  min-width: 0;
+}
+
+.TableHeader {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 2;
+  padding-top: 4px;
+  padding-bottom: 8px;
+  margin-bottom: 0;
+
+  span {
+    color: black;
+    font-weight: bold;
+    font-family: "Sf_Ui_Semibold";
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.SubjectButton {
+  background: transparent;
+  border: 0;
+  color: #555555;
+  cursor: pointer;
+  font-family: "Sf_Ui_Medium";
+  font-size: 12px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  padding: 0;
+  text-align: left;
+
+  &:hover {
+    color: $mainYellow;
+    text-decoration: underline;
+  }
+}
+
+.TableRow {
+  align-items: center;
+  margin-bottom: 5px;
+
+  span {
+    color: #555555;
+    font-family: "Sf_Ui_Medium";
+    font-size: 12px;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+}
+
+.PriorityHIGH,
+.PriorityMEDIUM,
+.PriorityLOW,
+.Deadline {
+  font-family: "Sf_Ui_Medium";
+  font-size: 12px;
+}
+
+.PriorityHIGH,
+.Deadline {
+  color: $mainYellow !important;
+}
+
+.PriorityMEDIUM {
+  color: #1f1f1f !important;
+}
+
+.PriorityLOW {
+  color: #1f1f1f !important;
+}
+
+.PriorityStatus {
+  border-radius: 4px;
+  display: inline-flex;
+  justify-content: center;
+  max-width: 82px;
+  padding: 5px 8px;
+  font-size: 12px;
+}
+
+.PriorityHIGH {
+  background-color: #ffeae6;
+  color: #f6857e !important;
+}
+
+.PriorityMEDIUM {
+  background-color: #fffae7;
+  color: #ffcb0b !important;
+}
+
+.PriorityLOW {
+  background-color: #f1f3f5;
+  color: #66707a !important;
+}
+
+.HighPriorityDeadline {
+  color: #f6857e !important;
+}
+
+.EmptyNoticeboard {
+  color: #9a9a9a;
+  font-family: "Sf_Ui_Medium";
+  font-size: 13px;
+  padding: 12px 0 2px;
+}
+
+.PositionTypeCard {
+  flex-basis: 100%;
+
+  @include media("<tablet") {
+    flex-basis: 100%;
+  }
+}
+
+.PositionTypeSection {
+  @include media("<tablet") {
+    flex-direction: column;
+  }
+}
+
+.PositionsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.PositionItem {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 18px;
+
+  @include media("<tablet") {
+    width: 100%;
+  }
+}
+
+.PositionLabel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.PositionName {
+  color: #333;
+  font-family: "Sf_Ui_Medium";
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 70%;
+}
+
+.PositionPercent {
+  color: #cfcfcf;
+  font-family: "Sf_Ui_Medium";
+  font-size: 12px;
+}
+
+.PositionProgress {
+  height: 10px;
+  background-color: #f2f2f2;
+  border-radius: 6px;
+}
+
+.ProgressBar {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: $mainYellow;
+}

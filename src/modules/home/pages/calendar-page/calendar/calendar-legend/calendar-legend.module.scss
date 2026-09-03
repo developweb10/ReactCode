@@ -1,0 +1,130 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.SicknessPathGray {
+  path:nth-child(3) {
+    fill: $gray500;
+  }
+}
+
+.LegendItem {
+  display: flex;
+  align-items: center;
+  margin-left: 2.5rem;
+  @include media("<tablet") {
+    margin-left: 2rem;
+  }
+  .LegendItemText {
+    color: $gray400;
+    font-size: 1.4rem;
+    margin-left: 1rem;
+    @include media("<tablet") {
+      margin-left: 0.5rem;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+  }
+  .LegendItemGroupedIcons {
+    position: relative;
+
+    display: flex;
+    .LegendItemGroupedIcon {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      &.HolidayIcon {
+        background: $gray400;
+        top: -18px;
+        left: -24px;
+        padding: 0.1rem;
+        svg {
+          position: relative;
+          right: -1px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+      &.SicknessIcon {
+        background: $gray500;
+        padding: 0.3rem;
+        top: -6px;
+        left: -15px;
+        svg {
+          position: relative;
+          top: 1px;
+          width: 14px;
+          height: 14px;
+        }
+      }
+      @include media("<tablet") {
+        &.HolidayIcon {
+          top: -17px;
+          left: -28px;
+          svg {
+            position: relative;
+            right: -1px;
+            width: 18px;
+            height: 18px;
+          }
+        }
+        &.SicknessIcon {
+          top: -5px;
+          left: -20px;
+          svg {
+            position: relative;
+            top: 1px;
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+    }
+  }
+  .LegendItemIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+    &.HolidayIcon {
+      background-color: $green300;
+      padding: 0.4rem;
+      svg {
+        position: relative;
+        top: -1px;
+        right: -1px;
+        width: 23px;
+        height: 23px;
+      }
+    }
+    &.SicknessIcon {
+      background-color: $mainYellow;
+      padding: 0.65rem;
+    }
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+    @include media("<tablet") {
+      &.HolidayIcon {
+        padding: 0.25rem;
+        svg {
+          position: relative;
+          top: -1px;
+          right: -1px;
+          width: 15px;
+          height: 15px;
+        }
+      }
+      &.SicknessIcon {
+        padding: 0.45rem;
+      }
+      svg {
+        width: 13px;
+        height: 13px;
+      }
+    }
+  }
+}

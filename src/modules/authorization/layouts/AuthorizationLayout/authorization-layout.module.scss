@@ -1,0 +1,32 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.Container {
+  background-color: $mainYellow;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.Wrapper {
+  width: 440px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  top: -20px;
+  @include media(">=fullhd") {
+    top: -70px;
+  }
+}
+
+.Logo {
+  width: 270px;
+  margin: 0 auto;
+  @include media("<tablet") {
+    width: 200px;
+  }
+}

@@ -1,0 +1,56 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+@import "src/styles/sass/mixins";
+
+.Wrap {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.Title {
+  font-size: 16px;
+  font-family: Sf_Ui_Medium;
+  margin-bottom: 15px;
+  display: flex;
+  .ResetButton {
+    margin-left: auto;
+
+    color: $gray500;
+    &:hover {
+      .ResetText {
+        color: $gray400;
+      }
+    }
+    .DeleteIcon {
+      width: 15px;
+      height: 15px;
+    }
+    .ResetText {
+      margin-left: 5px;
+    }
+  }
+}
+
+.RadioControlLabel {
+  font-size: 15px;
+  padding-left: 10px;
+
+  &:first-child {
+    margin-bottom: 12px;
+  }
+}
+
+.RadioRoot {
+  svg {
+    font-size: 25px;
+  }
+}
+.ButtonWrapper {
+  margin-top: auto;
+  button {
+    width: 100%;
+    color: #fff;
+  }
+  margin-bottom: 15px;
+}

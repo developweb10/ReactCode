@@ -1,0 +1,7 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.PageWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}

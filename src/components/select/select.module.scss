@@ -1,0 +1,54 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+@import "src/styles/sass/mixins";
+
+.Select {
+  padding: 10px 14px;
+  @include media(">=fullhd") {
+    padding: 12px 16px;
+  }
+  &:focus {
+    background: transparent;
+  }
+}
+.ArrowIcon {
+  width: 10px;
+  height: 10px;
+  transform: rotate(90deg);
+  top: calc(50% - 5px);
+  color: rgba(0, 0, 0, 0.54);
+  right: 19px;
+  position: absolute;
+}
+.SelectPaper {
+  max-height: 400px;
+  @include vertical-scroll();
+  ul {
+    li {
+      color: #000;
+      font-family: Sf_Ui_Medium;
+      font-size: 13px;
+      padding-left: 24px;
+      &[aria-selected="true"] {
+        background-color: inherit;
+        background: inherit;
+        box-shadow: 3px 0px 0px $mainYellow inset;
+        &:hover {
+          background-color: $secondaryYellow;
+          box-shadow: 3px 0px 0px $mainYellow inset;
+        }
+      }
+      &[data-focus="true"],
+      &:hover {
+        background-color: $secondaryYellow;
+        box-shadow: 3px 0px 0px $mainYellow inset;
+      }
+    }
+  }
+}
+
+.Disabled {
+  -webkit-text-fill-color: $gray700 !important;
+  color: $gray700;
+  cursor: not-allowed;
+}

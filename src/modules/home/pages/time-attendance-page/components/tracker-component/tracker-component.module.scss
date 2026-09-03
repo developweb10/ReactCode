@@ -1,0 +1,55 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.TrackerWrapper {
+  background-color: #fff;
+  border-radius: 6px;
+
+  padding: 25px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  .TrackerHeaderText {
+    font-size: 18px;
+    font-family: $medium;
+  }
+  .CardBody {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    .CountdownText {
+      font-size: 36px;
+      font-family: $bold;
+      margin: 10px 0;
+    }
+    .InfoText {
+      font-size: 13px;
+      color: $gray500;
+      text-overflow: ellipsis;
+      max-width: 90%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .ClockBtn {
+      .ClockCircle {
+        background-color: #fdd956;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 5px;
+      }
+      &.Disabled {
+        .ClockCircle {
+          background-color: #ccc;
+        }
+      }
+    }
+  }
+}

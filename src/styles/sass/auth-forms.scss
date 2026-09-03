@@ -1,0 +1,76 @@
+.form-title {
+  font-family: Sf_Ui_Bold, "sans-serif";
+  color: $mainBlack;
+  margin-bottom: 4rem;
+  @include media("<=smartphone") {
+    margin-bottom: 2rem;
+  }
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .input-wrapper {
+    margin-bottom: 4rem;
+    position: relative;
+    @include media("<=smartphone") {
+      margin-bottom: 3.5rem;
+    }
+    input {
+      background-color: $secondaryBlack;
+      border: none;
+      color: $white;
+      transition: box-shadow 0.4s;
+      &:focus,
+      &:active {
+        outline: none;
+        border: none;
+        box-shadow: 0 0 0 3px rgb(255, 227, 100);
+      }
+    }
+  }
+
+  .form-general-errors {
+    display: flex;
+    flex-direction: column;
+
+    .form-general-error {
+      color: $red400;
+      font-size: 14px;
+    }
+  }
+
+  .form-submit-btn {
+    margin-top: 3rem;
+    border-radius: 8px;
+    padding: 1.1rem 0;
+    font-family: Sf_Ui_Bold, sans-serif;
+    background: $mainBlack;
+    font-size: 1.6rem;
+    &:disabled {
+      color: #fff;
+      background: $mainBlack;
+      opacity: 0.7;
+    }
+  }
+
+  .form-link-wrapper {
+    position: relative;
+
+    .form-link {
+      position: absolute;
+      top: 10px;
+      font-size: 14px;
+      right: 0;
+      color: $mainBlack;
+      text-decoration: none;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $gray600;
+      }
+    }
+  }
+}

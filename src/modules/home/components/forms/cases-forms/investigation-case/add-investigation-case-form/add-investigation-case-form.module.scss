@@ -1,0 +1,33 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Wrap {
+  padding: 30px 65px;
+  flex: 1 1;
+  @include media("<=smartphone") {
+    padding: 30px 20px;
+  }
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  flex: 1 1;
+  position: relative;
+  @include media("<smartphone") {
+    padding: 0;
+    display: block;
+  }
+  h5 {
+    justify-self: flex-start;
+    align-self: flex-start;
+    padding-left: 2%;
+  }
+}
+.MessagesSection {
+  width: 100%;
+  padding: 30px 2%;
+}

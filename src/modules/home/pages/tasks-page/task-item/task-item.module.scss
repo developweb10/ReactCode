@@ -1,0 +1,202 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.TaskItem {
+  &:not(&:last-child) {
+    margin-bottom: 20px;
+  }
+  padding: 15px;
+  box-shadow: 0px 2px 15px #e9eef4;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  .TaskHeader {
+    .Badge {
+      padding: 7px 9px;
+      display: flex;
+      border-radius: 4px;
+      justify-content: center;
+      align-items: center;
+    }
+    .Success {
+      background-color: #f1fbf9;
+      color: #6ccebf;
+    }
+    .TaskTitle {
+      display: flex;
+      align-items: center;
+      @include media("<=tablet") {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .TaskName {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        @include media("<=tablet") {
+          margin-bottom: 5px;
+        }
+        .TaskEmployeeName {
+          font-size: 15px;
+          margin-left: 7px;
+          color: $gray500;
+        }
+        .TaskNameButton {
+          align-items: flex-start;
+          background: transparent;
+          border: 0;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          padding: 0;
+          text-align: left;
+
+          &:hover {
+            .TaskNameText,
+            .TaskSubjectText {
+              color: $mainYellow;
+            }
+          }
+        }
+        .TaskNameText {
+          font-size: 15px;
+          font-family: $medium;
+        }
+        .TaskSubjectText {
+          color: $gray700;
+          font-size: 13px;
+          font-family: $medium;
+          margin-top: 4px;
+          max-width: 520px;
+          overflow-wrap: anywhere;
+        }
+
+        @include media("<smartphone") {
+          .TaskEmployeeName,
+          .TaskNameText,
+          .TaskSubjectText {
+            font-size: 13px;
+          }
+        }
+      }
+      .TaskNewWrap {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        @include media("<=tablet") {
+          position: absolute;
+          right: 12px;
+        }
+
+        .NewCircle {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          border: 2px solid $mainYellow;
+        }
+        .NewText {
+          color: $gray400;
+          margin-left: 5px;
+        }
+      }
+    }
+    .Badge {
+      background-color: $red150;
+      color: $red300;
+    }
+    .Success {
+      background-color: #f1fbf9;
+      color: #6ccebf;
+    }
+    .TaskDeadline {
+      display: flex;
+      margin-top: 10px;
+      .DueDateText {
+        color: $gray600;
+      }
+      .DeadlineDate {
+        margin-left: 5px;
+      }
+    }
+  }
+  .TaskBody {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include media("<smartphone") {
+      flex-direction: column;
+    }
+    .TaskCreator {
+      display: flex;
+      align-items: center;
+      @include media("<smartphone") {
+        align-self: flex-start;
+      }
+      .CreatorAvatar {
+        margin-right: 10px;
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+        background-color: $red300;
+        color: #fff;
+      }
+      .FromText {
+        color: $gray500;
+      }
+      .CreatorName {
+        font-family: $medium;
+        margin-left: 5px;
+      }
+      .AuthorBadge {
+        min-width: 37px;
+        background-color: $green100;
+        color: $green300;
+        padding: 3px;
+        margin-left: 5px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .TaskActions {
+      display: flex;
+      @include media("<smartphone") {
+        margin-top: 5px;
+        flex-direction: column;
+        align-self: auto;
+        width: 100%;
+        & > div:not(&:first-child) {
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 10px;
+          align-items: center;
+        }
+        span {
+          font-size: 12px;
+        }
+      }
+      .EditButton,
+      .DeleteButton {
+        margin-right: 7px;
+        padding: 6px;
+        border-radius: 8px;
+        background-color: $gray300;
+        transition: background-color 0.3s;
+        &:hover {
+          background-color: lighten($gray300, 2);
+        }
+        svg {
+          width: 15px;
+          height: 15px;
+        }
+      }
+      .CompleteBtn {
+        padding: 3px 12px;
+        font-size: 12px;
+        @include media(">smartphone") {
+          padding: 3px 16px;
+        }
+      }
+    }
+  }
+}

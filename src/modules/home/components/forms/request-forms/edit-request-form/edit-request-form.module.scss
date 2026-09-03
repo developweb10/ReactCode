@@ -1,0 +1,84 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.BodyForm {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  flex: 0 1 50%;
+}
+
+.StatusSelectWrap {
+  margin-bottom: 20px;
+}
+
+.Paper {
+  box-shadow: 1px 3px 6px 3px rgba(215, 215, 215, 0.37);
+  padding: 10px;
+  @include media("<=smartphone") {
+    max-width: 100%;
+    top: 0 !important;
+    left: 0 !important;
+    max-height: 100%;
+    padding-bottom: 50px;
+  }
+
+  .PopoverFooter {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    @include media("<=smartphone") {
+      position: fixed;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      padding: 10px;
+      z-index: 1000;
+    }
+    .ResetWrapper {
+      margin-left: 10px;
+
+      .ResetIcon {
+        width: 15px;
+        height: 15px;
+      }
+      .ResetText {
+        font-size: 14px;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.FormDates {
+  display: flex;
+  justify-content: space-between;
+  @include media("<=smartphone") {
+    flex-direction: column;
+  }
+}
+
+.StartDate,
+.EndDate {
+  flex: 0 1 45%;
+  display: flex;
+  flex-direction: column;
+  &:hover {
+    cursor: pointer;
+    .Input {
+      border: 1.5px solid $mainYellow;
+    }
+  }
+  @include media("<=smartphone") {
+    &.EndDate {
+      margin-top: 10px;
+    }
+  }
+}
+
+.NoteArea {
+  margin-top: 15px;
+}

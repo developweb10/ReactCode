@@ -1,0 +1,18 @@
+.CalendarActions {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  .ResetWrapper {
+    margin-left: 10px;
+
+    .ResetIcon {
+      width: 15px;
+      height: 15px;
+    }
+    .ResetText {
+      font-size: 14px;
+      margin-left: 5px;
+    }
+  }
+}

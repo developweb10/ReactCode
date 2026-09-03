@@ -1,0 +1,34 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px 40px 20px;
+
+  justify-content: center;
+  position: relative;
+  @include media("<=tablet") {
+    border-radius: 0;
+  }
+}
+
+.DialogPaper {
+  max-width: map-get($breakpoints, "tablet");
+  border-radius: 8px;
+  @include media("<=tablet") {
+    border-radius: 0;
+  }
+}
+
+.Label {
+  color: $gray500;
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.Text {
+  overflow-wrap: break-word;
+  font-size: 13px;
+  font-family: Sf_Ui_Medium;
+  line-height: 23px;
+}

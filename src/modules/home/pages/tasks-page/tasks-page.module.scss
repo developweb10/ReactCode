@@ -1,0 +1,67 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.PageWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ContentWrapper {
+  background-color: #fff;
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  height: 100%;
+  padding: 19px 34px;
+  position: relative;
+  @include media("<tablet") {
+    padding: 19px;
+  }
+}
+
+.Content {
+  margin-top: 20px;
+  height: 100%;
+}
+.Tabs {
+  min-height: 42px;
+  .Tab {
+    min-height: 42px;
+    @include media("<smartphone") {
+      span {
+        font-size: 13px;
+      }
+    }
+    opacity: 0.4;
+    &.SelectedTab {
+      opacity: 1;
+    }
+  }
+}
+
+.Loader {
+  background-color: #fff;
+  opacity: 0.4;
+}
+.TasksList {
+  padding: 13px 0;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.ShowMore {
+  color: $gray500;
+  font-family: $medium;
+  letter-spacing: 0.01em;
+  text-align: center;
+  margin-top: auto;
+}
+
+.NoTasksMessage {
+  color: $gray500;
+  margin: auto;
+}

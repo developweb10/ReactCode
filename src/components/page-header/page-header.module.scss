@@ -1,0 +1,116 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Header {
+  display: flex;
+  flex-direction: row;
+  padding: 1.8rem 0;
+  align-items: center;
+
+  @include media("<tablet") {
+    padding: 1.3rem 0;
+  }
+}
+
+.HeaderWrapper {
+  background-color: $white;
+  padding: 0 4rem;
+  box-shadow: $mainShadow;
+  z-index: 100;
+  position: sticky;
+  top: 0;
+
+  @include media("<tablet") {
+    padding: 0 1.5rem;
+  }
+}
+
+.HeaderSearchWrapper {
+  margin-right: 1rem;
+}
+
+.HeaderButton {
+  &.MobileButton {
+    padding: 6px;
+    min-width: 40px;
+
+    .MobileStartIcon {
+      margin: 0;
+    }
+  }
+}
+
+.HeaderTabsWrapper {
+  border-top: 1px solid $gray300;
+
+  @include media("<tablet") {}
+}
+
+.rightSection {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.TitleWrapper {
+  display: flex;
+  align-items: center;
+
+  .Title {
+    margin-left: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  @include media("<tablet") {
+    div {
+      width: 1rem;
+      height: 1rem;
+      padding: 0.8rem;
+    }
+
+    .Title {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.HeaderProfileSection {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+  padding-left: 2rem;
+  border-left: 1px solid $gray300;
+}
+
+.AvatarWrap {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.Avatar {
+  margin-right: 10px;
+}
+
+.ProfileSimpleInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.Name {
+  font-family: Sf_Ui_Bold;
+  color: #000;
+  font-size: 14px;
+}
+
+.Position {
+  color: #848484;
+  font-size: 12px;
+}
+
+.Paper {
+  ul {
+    padding: 0;
+  }
+}

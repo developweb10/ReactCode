@@ -1,0 +1,134 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+
+  position: relative;
+  padding: 40px 80px 40px 80px;
+  @include media("<=tablet") {
+    border-radius: 0;
+    padding: 24px;
+  }
+  flex: 1 1;
+}
+
+.Heading {
+  display: flex;
+  align-items: center;
+  .IconWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .HolidayIcon,
+    .SicknessIcon {
+      padding: 12px;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+    }
+
+    .HolidayIcon {
+      background-color: $green300;
+      padding: 0.4rem;
+      svg {
+        position: relative;
+        top: -2px;
+        right: -1px;
+        width: 33px;
+        height: 33px;
+      }
+    }
+    .SicknessIcon {
+      background-color: $mainYellow;
+      padding: 0.65rem;
+      svg {
+        width: 28px;
+        height: 28px;
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+  .Title {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    .TitleTextHeader {
+      font-size: 1.8rem;
+      font-family: Sf_Ui_Semibold;
+      margin-bottom: 10px;
+    }
+
+    .TitleTextSub {
+      font-size: 1.2rem;
+      color: $gray600;
+      font-family: Sf_Ui_Light;
+      margin-top: 2px;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+.Body {
+  margin-top: 40px;
+  .MainRequestInfo {
+    display: flex;
+    @include media("<=smartphone") {
+      justify-content: space-between;
+    }
+    .BlockWrapper {
+      display: flex;
+      flex-direction: column;
+
+      margin-right: 120px;
+      @include media("<=smartphone") {
+        margin-right: 0px;
+      }
+      .BlockLabel {
+        color: $gray500;
+        font-size: 14px;
+      }
+      .BlockValue {
+        margin-top: 15px;
+        .Date {
+          font-family: Sf_Ui_Medium;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  .RequestNote {
+    .NoteLabel {
+      color: $gray500;
+      font-size: 14px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    .NoteValue {
+      overflow-wrap: break-word;
+      font-size: 13px;
+      font-family: Sf_Ui_Medium;
+      line-height: 23px;
+    }
+  }
+}
+
+.EditButton {
+  margin-left: 20px;
+}
+
+.ButtonsWrapper {
+  align-self: center;
+  margin-top: 40px;
+  @include media("<=tablet") {
+    margin-top: auto;
+  }
+}

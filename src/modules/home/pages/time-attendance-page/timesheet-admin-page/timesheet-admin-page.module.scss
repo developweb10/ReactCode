@@ -1,0 +1,42 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.PageWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.Wrapper {
+  display: flex;
+  @include media("<=laptop") {
+    flex-direction: column;
+  }
+}
+
+.TimeSheetTableWrapper {
+  margin-right: 40px;
+  align-self: flex-start;
+  flex: 1;
+  overflow: auto;
+  @include media("<laptop") {
+    margin-right: 0px;
+    align-self: stretch;
+  }
+}
+.BackButton {
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+.BackIcon {
+  transform: rotate(90deg);
+  margin-right: 0.7rem;
+}
+
+.RightColumn {
+  width: 325px;
+  @include media("<laptop") {
+    width: 100%;
+    margin-top: 40px;
+  }
+}

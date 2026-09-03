@@ -1,0 +1,16 @@
+.Badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 20px;
+  span {
+    font-size: 12px;
+    letter-spacing: 0.6px;
+  }
+}
+.BadgeSuccess {
+  background-color: #e2f5f2;
+  span {
+    color: #8cd8cb;
+  }
+}

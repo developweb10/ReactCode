@@ -1,0 +1,101 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 1000px;
+  position: relative;
+  height: 100%;
+  flex: 1;
+}
+
+.NoCaseText {
+  margin: auto;
+  color: $gray500;
+  font-size: 16px;
+  position: relative;
+  top: -40px;
+}
+
+.HeaderRoot {
+  padding: 0px;
+}
+.CaseItemBody {
+  padding: 0;
+}
+.CaseItem {
+  border-bottom: 0.5px solid #fff0b6;
+  margin-bottom: 10px;
+
+  padding: 5px;
+
+  &::before {
+    display: none;
+  }
+  &.Expanded {
+    border: 2px solid rgba(239, 239, 239, 0.84);
+    border-radius: 8px;
+    box-shadow: 0 0 14px 3px rgba(230, 230, 230, 0.5);
+  }
+
+  .CaseItemHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 1% 2%;
+    &:hover {
+      cursor: pointer;
+    }
+
+    > div {
+      flex-grow: 4;
+      margin-right: 20px;
+      @include media("<=smartphone") {
+        margin-right: 5px;
+
+        input {
+          font-size: 12px;
+          padding: 8px;
+        }
+      }
+    }
+
+    .Badge {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 39px;
+      flex-grow: 1;
+      margin-left: 20px;
+      @include media("<=smartphone") {
+        margin-left: 0px;
+        height: 31px;
+      }
+    }
+
+    .ArrowWrapper {
+      flex-grow: 1;
+
+      height: 39px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 5px;
+      margin-right: 5px;
+      @include media("<=smartphone") {
+        height: 31px;
+      }
+      .ArrowIcon {
+        transform: rotate(-90deg);
+        transition: transform 0.5s;
+        cursor: pointer;
+        &.Expanded {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.ReturnSection {
+  width: 100%;
+  padding: 30px 2%;
+  display: flex;
+  flex-direction: column;
+  .ReturnLabel {
+    font-family: Sf_Ui_Medium;
+    margin-bottom: 10px;
+    display: inline-block;
+
+    .LabelAsterix {
+      color: $mainYellow;
+    }
+  }
+  .ReturnElementsWrapper {
+    display: flex;
+  }
+  .ReturnValue {
+    align-self: center;
+    width: 100px;
+    text-align: center;
+  }
+  .RadioWrapper {
+    display: flex;
+
+    .RadioControlLabel {
+      font-size: 18px;
+      padding-left: 10px;
+      font-family: Sf_Ui_Light;
+      color: #797674;
+      &:first-child {
+        margin-bottom: 12px;
+      }
+    }
+  }
+}
+
+.TimeOffSick {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 3% 2% 0 2%;
+  .TimeOffSickLabel {
+    margin-bottom: 8px;
+    display: block;
+    font-size: 14px;
+    color: $gray400;
+  }
+
+  .TimeOffSickValue {
+    font-size: 14px;
+    font-family: Sf_Ui_Bold;
+    margin-left: 3px;
+  }
+}
+
+.NoteAreaSection {
+  width: 100%;
+  padding: 30px 2%;
+}
+
+.OutcomeSection {
+  width: 100%;
+  padding: 30px 2%;
+  .OutcomeWrapper {
+    width: 50%;
+
+    @include media("<tablet") {
+      width: 100%;
+    }
+  }
+}
+
+.ReturnDateSection {
+  width: 100%;
+  padding: 30px 2%;
+  .ReturnDate {
+    width: 50%;
+    @include media("<tablet") {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.Footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2%;
+  margin-top: auto;
+  @include media("<smartphone") {
+    flex-direction: column;
+    button {
+      margin: 20px 0;
+    }
+  }
+}
+
+.Annotation {
+  color: $gray400;
+  font-family: "Sf_Ui_Light";
+}
+
+.SubmitButton {
+  margin-right: 10px;
+  padding: 5px 24px;
+}

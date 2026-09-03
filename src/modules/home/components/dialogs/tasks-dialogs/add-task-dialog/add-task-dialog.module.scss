@@ -1,0 +1,71 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Wrapper {
+  padding: 0;
+}
+
+.Heading {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 80px 20px 80px;
+  background-color: $gray100;
+  @include media("<=smartphone") {
+    padding: 20px 10px 0px 20px;
+  }
+
+  z-index: 1;
+}
+
+.TitleWrapper {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.IconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .Icon {
+    background-color: #fcf2cb;
+    padding: 12px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.Title {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  .TitleTextHeader {
+    font-size: 1.8rem;
+    font-family: Sf_Ui_Semibold;
+    margin-bottom: 10px;
+  }
+
+  .TitleTextSub {
+    font-size: 1.2rem;
+    color: $gray600;
+    font-family: Sf_Ui_Light;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+}
+
+.Actions {
+  justify-content: center;
+  padding: 30px;
+  .ButtonsWrapper {
+    button {
+      &:disabled {
+        padding: 9px 56px;
+        background-color: $gray300;
+      }
+    }
+  }
+}

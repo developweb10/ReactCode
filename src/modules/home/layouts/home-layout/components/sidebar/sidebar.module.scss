@@ -1,0 +1,98 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.Container {
+  background-color: $mainBlack;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  top: 0;
+  flex: 1 0 auto;
+  height: 100%;
+  display: flex;
+  outline: 0;
+  z-index: 1200;
+  position: fixed;
+  overflow-y: auto;
+  flex-direction: column;
+  width: $sidebarWidth;
+  -webkit-overflow-scrolling: touch;
+  @include media("<laptop") {
+    display: none;
+  }
+  &.IsMobile {
+    display: none;
+  }
+}
+
+.MobileContainer {
+  background-color: $mainBlack;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  top: 0;
+  flex: 1 0 auto;
+  height: 100%;
+  display: flex;
+  outline: 0;
+  z-index: 1200;
+  position: fixed;
+  overflow-y: auto;
+  flex-direction: column;
+  width: $sidebarWidth;
+  -webkit-overflow-scrolling: touch;
+  @include media(">=laptop") {
+    display: none;
+  }
+  &.IsMobile {
+    display: flex;
+  }
+}
+
+.Wrap {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.LogoWrap {
+  padding: 43px 85px 39px 39px;
+  @include media("<laptop") {
+    padding: 20px 20px 20px 39px;
+  }
+}
+
+.SidebarFullLogoWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+}
+
+.SettingLink {
+  position: relative;
+  padding-bottom: 50px;
+  padding-top: 10px;
+  &:before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: calc(100% - 40px);
+    background-color: rgba(255, 255, 255, 0.4);
+    top: 0;
+    right: 0;
+    margin: 0 20px;
+  }
+}

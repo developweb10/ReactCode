@@ -1,0 +1,78 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.AppealWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 1% 2%;
+
+  p:first-child {
+    color: #8d8aa1;
+    font-size: 13px;
+    text-align: left;
+    font-family: $regular;
+  }
+  > div {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    @include media("<smartphone") {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    > div {
+      flex-basis: 70%;
+    }
+  }
+}
+.TextFieldSection {
+  display: flex;
+  width: 100%;
+  padding: 1% 2%;
+  margin-top: 10px;
+  justify-content: space-between;
+  @include media("<smartphone") {
+    flex-direction: column;
+  }
+  .Label {
+    color: #8d8aa1;
+    .Asterix {
+      color: $mainYellow;
+    }
+  }
+
+  .TextFieldWrapper {
+    flex-basis: 70%;
+  }
+}
+
+.TextArea {
+  textarea {
+    background-color: #fff;
+    border: 0.5px solid #d9d9d9;
+    font-size: 12px;
+  }
+}
+
+.TextField {
+  background-color: #fff;
+  border: 0.5px solid #d9d9d9;
+  font-size: 12px;
+}
+
+.OutcomeWrapper {
+  display: flex;
+  align-items: center;
+  .ValidIcon {
+    font-size: 8px;
+    svg {
+      padding: 2px;
+
+      width: 2em;
+      height: 2em;
+    }
+  }
+}

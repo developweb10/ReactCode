@@ -1,0 +1,25 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Wrapper {
+  display: flex;
+  padding: 20px 20px 20px 30px;
+  align-items: center;
+  @include media("<tablet") {
+    padding: 10px;
+  }
+  .StatusWrapper {
+    display: flex;
+    align-items: center;
+    .Badge {
+      margin-left: 20px;
+      min-width: 72px;
+      @include media("<tablet") {
+        margin-left: 5px;
+      }
+    }
+  }
+  .AdminControlsGroup {
+    margin-left: auto;
+  }
+}

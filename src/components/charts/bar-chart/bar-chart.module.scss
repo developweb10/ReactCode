@@ -1,0 +1,38 @@
+@import "src/styles/sass/media";
+
+.LegendWrapper {
+  display: flex;
+  .LegendItem {
+    display: flex;
+    &:not(:first-child) {
+      margin-left: 25px;
+    }
+    align-items: center;
+
+    .LegendSquare {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+    }
+    .LegendLabel {
+      margin-left: 12px;
+      color: #828282;
+    }
+  }
+}
+
+.MonthName {
+  @include media("<laptop") {
+    font-size: 14px;
+  }
+
+  @include media("<tablet") {
+    font-size: 12px;
+  }
+  @include media("<smartphone") {
+    font-size: 11px;
+  }
+  @include media("<=phone") {
+    font-size: 9px;
+  }
+}

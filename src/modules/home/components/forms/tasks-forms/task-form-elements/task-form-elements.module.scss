@@ -1,0 +1,29 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.InputGroup {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.InputWrapper {
+  padding: 1% 2%;
+  min-width: 140px;
+  flex-basis: 50%;
+  margin-top: 10px;
+  @include media("<=smartphone") {
+    flex-basis: 100%;
+  }
+}
+
+.TextAreaWrapper {
+  padding: 1% 2%;
+  width: 100%;
+}
+
+.Divider {
+  background-color: #f9f9f9;
+  width: 100%;
+  margin: 35px 0;
+  height: 2px;
+}

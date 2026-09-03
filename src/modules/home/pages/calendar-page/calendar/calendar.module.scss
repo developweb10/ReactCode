@@ -1,0 +1,55 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Loader {
+  background-color: $gray200;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CalendarWrapper {
+  background-color: #fff;
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  position: relative;
+
+  @include media("<tablet") {
+    padding: 0 1rem;
+  }
+}
+
+// ========= CALENDAR HEADER (LEGEND) =============
+.CalendarHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2.5rem 4rem;
+  @include media("<tablet") {
+    padding: 1.5rem 1.5rem;
+  }
+}
+
+// ========= CALENDAR  TABLE  ==================
+.Calendar {
+  padding-left: 3px;
+
+  .CurrentDay {
+    border-left: 2px solid $mainYellow !important;
+    border-right: 2px solid $mainYellow;
+  }
+
+  // ======= CALENDAR TABLE HEADER (dates && date selector) =======
+  .CalendarTableHeader {
+  }
+
+  // ======= CALENDAR TABLE BODY (requests && users) =======
+  .CalendarTableBody {
+    // ====== EVERY ROW CELL
+  }
+}

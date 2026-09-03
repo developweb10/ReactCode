@@ -1,0 +1,9 @@
+.reapop__container--top-right,
+.reapop__container--top-center {
+  @include media(">tablet") {
+    top: 70px !important;
+  }
+}
+.reapop__notification-meta {
+  word-break: break-word;
+}

@@ -1,0 +1,84 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  justify-content: center;
+  position: relative;
+  flex: 1;
+  @include media("<=smartphone") {
+    border-radius: 0;
+  }
+}
+
+.SuccessWrapper {
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  margin: 90px auto auto auto;
+  .TitleText {
+    display: inline-block;
+    font-size: 18px;
+    &:first-child {
+      margin-top: 15px;
+    }
+  }
+  @include media("<=smartphone") {
+    justify-content: center;
+  }
+}
+
+.Heading {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.DialogPaper {
+  max-width: map-get($breakpoints, "smartphone");
+  border-radius: 8px;
+  @include media("<=smartphone") {
+    border-radius: 0;
+  }
+}
+
+.IconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .Icon {
+    background-color: #fcf2cb;
+    padding: 12px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.Title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .TitleText {
+    display: inline-block;
+    margin-top: 5px;
+  }
+}
+
+.ButtonsWrapper {
+  align-self: center;
+
+  margin-top: 40px;
+}
+
+.RemoveButton {
+  padding: 3px 15px;
+  margin-left: 10px;
+}

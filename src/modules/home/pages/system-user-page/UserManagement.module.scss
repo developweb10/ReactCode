@@ -1,0 +1,324 @@
+.container {
+  padding: 2rem;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h1 { font-size: 1.5rem; color: #1e293b; margin: 0; }
+  p { color: #64748b; margin: 0; }
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #2563eb;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+
+  &:hover { background: #1d4ed8; }
+}
+
+.tableWrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.userTable {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th {
+    background: #f1f5f9;
+    padding: 12px 20px;
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #475569;
+    letter-spacing: 0.05em;
+  }
+
+  td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+  }
+}
+
+.userName { font-weight: 600; color: #0f172a; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &.ROLE_ADMIN { background: #fee2e2; color: #991b1b; }
+  &.ROLE_HR { background: #dcfce7; color: #166534; }
+  &.ROLE_EMPLOYEE { background: #e0f2fe; color: #075985; }
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  &:hover { color: #ef4444; }
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  width: 450px;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Keep your existing container and table styles, add/update these: */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6); // Darker, blurred backdrop
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal {
+  background: white;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  animation: modalAppear 0.3s ease-out;
+}
+
+@keyframes modalAppear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modalHeader {
+  padding: 24px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 4px 0 0;
+    font-size: 0.875rem;
+    color: #64748b;
+  }
+}
+
+.closeBtn {
+  background: #f8fafc;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover { background: #fee2e2; color: #ef4444; }
+}
+
+.modalForm {
+  padding: 32px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    font-size: 0.813rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 8px;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.938rem;
+    color: #1e293b;
+    transition: all 0.2s;
+    outline: none;
+
+    &:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    &::placeholder {
+      color: #94a3b8;
+    }
+  }
+}
+
+.modalFooter {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+
+  button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.938rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+}
+
+.btnCancel {
+  background: #f1f5f9;
+  border: none;
+  color: #475569;
+  &:hover { background: #e2e8f0; }
+}
+
+.btnSave {
+  background: #2563eb;
+  border: none;
+  color: white;
+  &:hover { 
+    background: #1d4ed8; 
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  }
+  &:active { transform: translateY(0); }
+}
+.provision_Account_form  form{
+    padding: 0 !important;
+}
+.provision_Account_Box> div{
+    padding: 0 0 30px !important;
+}
+.provision_Account_Txt h3{
+    font-size: 14px;
+    font-weight: 600;
+}
+.provision_Account_Txt p{
+    font-size: 12px;
+    font-weight: 400;
+}
+.provision_Account_form label{
+    font-size: 12px;
+    font-weight: 500;
+}
+.provision_Account_form input, 
+.provision_Account_form select{
+    font-size: 12px;
+    font-weight: 400;
+    padding: 12px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    outline: none;
+}
+.provision_Account_form button{
+    font-size: 12px;
+    font-weight: 600;
+}
+.provision_Account_form .btnCancel{
+    background: #f1f5f9;
+    border: none;
+    color: #545c67;
+    &:hover { background: #e2e8f0; }
+}
+.provision_Account_form .btnSave {
+    background: #ffcb0b;
+    border: none;
+    color: white;
+}
+.provision_Account_Box .closeBtn:hover {
+    background: #ffcb0b;
+    color: #000;
+}
+.user_Management_Box .addButton{
+    background: #ffcb0b;
+    border: none;
+    color: white;
+}
+.user_Management_Content{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user_Management_Content img {
+    padding: 10px;
+    background-color: #fffae7;
+    border-radius: 50%;
+    width: 40px;
+}
+.user_Management_Text h2 {
+    font-size: 1.8rem;
+    font-family: "Sf_Ui_Medium", sans-serif;
+    font-weight: 400;
+    line-height: 1.334;
+    margin: 0;
+}
+
+.system_Management_TableHeader th,
+.system_Management_TableBody td{
+    font-size: 1.3rem;
+    font-family: "SF_Regular", sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.system_Management_TableBody .badge{
+    font-size: 10px;
+    padding: 7px 10px;
+}

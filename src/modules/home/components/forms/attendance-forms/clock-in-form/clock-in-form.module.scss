@@ -1,0 +1,57 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Wrap {
+  padding: 30px 65px;
+
+  @include media("<=smartphone") {
+    padding: 0;
+  }
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  @include media("<smartphone") {
+    padding: 0;
+    display: block;
+  }
+  h5 {
+    justify-self: flex-start;
+    align-self: flex-start;
+    padding-left: 2%;
+  }
+
+  .ButtonsWrapper {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.InputWrapper {
+  width: 100%;
+
+  margin-top: 30px;
+  &:first-child {
+    margin-top: 10px;
+  }
+}
+
+.InputGroup {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  .InputWrapper {
+    width: auto;
+    margin: 0;
+    flex-grow: 1;
+    &:first-child {
+      margin-right: 26px;
+    }
+  }
+}

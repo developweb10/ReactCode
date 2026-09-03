@@ -1,0 +1,121 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.PageWrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.EmployeeInfoWrapper {
+  display: flex;
+  min-height: 90%;
+  @include media("<=tablet") {
+    flex-direction: column;
+  }
+}
+
+.BackButton {
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+.BackIcon {
+  transform: rotate(90deg);
+  margin-right: 0.7rem;
+}
+
+.CardsWrapper {
+  display: flex;
+  flex-direction: column;
+  @include media("<=tablet") {
+    flex-direction: row;
+  }
+  @include media("<smartphone") {
+    flex-direction: column;
+  }
+}
+
+.EmployeeCard {
+  background-color: #fff;
+  margin-right: 3rem;
+  width: 30rem;
+  padding: 2.5rem;
+  box-shadow: $mainShadow;
+  border-radius: 6px;
+  align-self: flex-start;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  @include media("<=tablet") {
+    align-self: stretch;
+    margin-right: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  @include media(">tablet", "<=laptop") {
+    width: 25rem;
+  }
+}
+
+.CardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .EmployeeAge {
+    color: $gray500;
+  }
+  .EmployeeStatus {
+  }
+}
+
+.CardBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 0;
+  @include media("<=tablet") {
+    padding: 6rem 0;
+  }
+  @include media(">tablet", "<=laptop") {
+    padding: 3rem 0;
+  }
+  .EmployeeName {
+  }
+  .EmployeeId {
+    color: $gray400;
+    margin-top: 1rem;
+  }
+
+  .EmployeePosition {
+    color: $mainYellow;
+    margin-top: 2rem;
+  }
+}
+
+.EmployeeDetails {
+  background-color: #fff;
+  flex: 4;
+  max-width: 1000px;
+  box-shadow: $mainShadow;
+  border-radius: 6px;
+  padding: 0.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include media("<=tablet") {
+    margin-top: 2rem;
+    min-height: 300px;
+  }
+  position: relative;
+}
+
+.DetailsHeader {
+  border-bottom: 1px solid $gray300;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background-color: #fff;
+  width: 100%;
+}

@@ -1,0 +1,111 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+.PageWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+// COLUMNS
+.FirstColumn {
+  padding-left: 23px !important;
+}
+.LocationNameColumnBody {
+  @include media(">tablet", "<=fullhd") {
+    p {
+      text-overflow: ellipsis;
+      width: 100px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
+
+.HRColumnBody,
+.HRColumn {
+  width: 120px;
+  min-width: 120px;
+}
+.HRColumnBody {
+  @include media(">tablet") {
+    white-space: normal !important;
+    p {
+      line-height: 1.2;
+    }
+  }
+}
+
+.AilmentColumn {
+  white-space: normal !important;
+  min-width: 120px;
+}
+
+.FitNoteColumn {
+  min-width: 110px;
+  @include media(">tablet") {
+    white-space: normal !important;
+    p {
+      line-height: 1.2;
+    }
+  }
+}
+
+.SickDurationColumn,
+.SickDurationColumnBody {
+  min-width: 130px;
+}
+
+.StatusColumn {
+  width: 80px;
+  min-width: 80px;
+}
+
+.ActionsColumn {
+  width: 80px;
+  min-width: 80px;
+}
+.BoldCellContent {
+  font-family: Sf_Ui_Medium;
+}
+
+.GrayCellContent {
+  color: $gray600;
+}
+
+.Suspended {
+  justify-content: center;
+
+  svg {
+    padding: 2.3px;
+    width: 1.2em;
+    height: 1.2em;
+  }
+}
+
+.LocationName,
+.EmployeeName {
+  cursor: pointer;
+  &:hover {
+    color: $gray400;
+  }
+}
+
+.Badge {
+  min-width: auto;
+}
+
+.ActionsMenuItem {
+  display: flex;
+  align-items: center;
+  .ActionsMenuItemIconWrapper {
+    background-color: $gray200;
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+  }
+  .ActionsMenuItemText {
+    margin-left: 1.2rem;
+  }
+}

@@ -1,0 +1,60 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Card {
+  background-color: #fff;
+  border-radius: 6px;
+  min-height: 140px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+
+  .CardHeader {
+    display: flex;
+    align-items: center;
+    .IconWrapper {
+      padding: 4px;
+      background-color: $secondaryYellow;
+      border-radius: 8px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .CardHeaderText {
+      margin-left: 10px;
+    }
+  }
+
+  padding: 25px 10px 20px 25px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .CardBody {
+    margin-top: auto;
+    .NumberValue {
+      font-size: 36px;
+      font-family: $bold;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .TotalWrapper {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      .NumberValue {
+        overflow: visible;
+        margin-right: 10px;
+      }
+      .TipText {
+        color: $gray500;
+        border-left: 2px solid $mainYellow;
+        padding-left: 10px;
+        flex: 1;
+      }
+    }
+  }
+}

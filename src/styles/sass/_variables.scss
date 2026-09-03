@@ -1,0 +1,57 @@
+// ============ COLORS ===========
+
+$mainBlack: #1f1a17;
+$secondaryBlack: #2f2b28;
+
+$mainYellow: #ffcb0b;
+$secondaryYellow: #fffae7;
+
+$darkYellow: #f3bf00;
+$lightYellow: #ffd53c;
+
+$green100: #e2f5f2;
+$green200: #c5ece5;
+$green300: #6fcfbe;
+
+$red100: #fbeeee;
+$red150: #ffeae6;
+$red200: #fbdddd;
+$red300: #f6857e;
+$red400: #eb5757;
+
+$blue100: #d5e6fb;
+$blue400: #2f80ed;
+
+$white: #fff;
+
+$gray100: #fbfbfb;
+$gray200: #f6f6f6;
+$gray300: #f4f4f4;
+$gray400: #cccccc;
+$gray500: #bdbdbd;
+$gray600: #a2a09f;
+$gray700: #63605e;
+$gray800: #333333;
+
+$calendarBorderColor: #f0f0f0;
+
+$textColor: $gray500;
+$secondaryTextColor: $gray400;
+$fieldStrokeColor: $gray300;
+$pageBackgroundColor: $gray200;
+$fieldBackgroundColor: $gray100;
+
+// ========== SHADOWS ============
+
+$mainShadow: -1px 1px 19px 4px rgba(168, 168, 168, 0.08);
+
+// ========== FONTS ==============
+
+$regular: "SF_Regular", sans-serif;
+$medium: "Sf_Ui_Medium", sans-serif;
+$semibold: "Sf_Ui_Semibold", sans-serif;
+$bold: "Sf_Ui_Bold", sans-serif;
+
+// ========= COMPONENTS ============
+
+$sidebarWidth: 240px;

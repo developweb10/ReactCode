@@ -1,0 +1,26 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+
+.Container {
+  display: flex;
+  flex: 1;
+  @include media("<tablet") {
+    flex-direction: column;
+  }
+}
+
+.Content {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw - #{$sidebarWidth});
+  padding-left: $sidebarWidth;
+  @include media("<laptop") {
+    width: 100vw;
+    padding-left: 0;
+  }
+  &.IsMobile {
+    width: 100vw;
+    padding-left: 0;
+  }
+}

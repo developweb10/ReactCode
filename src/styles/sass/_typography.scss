@@ -1,0 +1,44 @@
+.bold-text {
+  font-family: $medium;
+}
+.white-text {
+  color: $white;
+}
+
+.yellow-text {
+  color: $mainYellow;
+}
+
+.table-text-clickable {
+  cursor: pointer;
+  &:hover {
+    color: $gray400;
+  }
+}
+
+.table-text {
+  color: #797674;
+}
+
+.table-view-text {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+
+  &:hover {
+    color: $gray400;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    box-shadow: 0 1px 0 $gray500;
+    z-index: 20;
+    height: 1px;
+    width: 100%;
+    bottom: 3px;
+    left: 0;
+  }
+}
+.table-text-2 {
+  color: $gray600;
+}

@@ -1,0 +1,112 @@
+@import "src/styles/sass/variables";
+@import "src/styles/sass/media";
+@import "src/styles/sass/mixins";
+
+.Wrap {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.Title {
+  font-size: 16px;
+  font-family: Sf_Ui_Medium;
+  margin-bottom: 15px;
+  display: flex;
+  flex: 0 1 25px;
+  align-items: center;
+
+  .ResetButton {
+    margin-left: auto;
+
+    color: $gray500;
+    &:hover {
+      .ResetText {
+        color: $gray400;
+      }
+    }
+    .DeleteIcon {
+      width: 15px;
+      height: 15px;
+    }
+    .ResetText {
+      margin-left: 5px;
+    }
+  }
+}
+.Input {
+  flex: 0 1 45px;
+  background-color: $gray200;
+  border-radius: 3px;
+  color: $gray600;
+  transition: box-shadow 250ms;
+  border: none;
+  font-size: 16px;
+
+  input {
+    border-radius: 3px;
+    padding: 12px;
+    transition: box-shadow 250ms;
+    &:focus {
+      box-shadow: 0 0 0 0.1rem $mainYellow;
+    }
+  }
+}
+.Loader {
+  margin: auto;
+}
+.NotFound {
+  text-align: center;
+  margin: auto;
+  span {
+    color: $gray500;
+  }
+}
+
+.SelectedFilters {
+  margin-top: 10px;
+  @include media("<=smartphone") {
+    margin-top: 0px;
+  }
+}
+.Chip {
+  background-color: $gray200;
+  color: $gray400;
+  margin-top: 10px;
+  font-size: 14px;
+  padding: 17px 2px;
+
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+  .ChipLabel {
+    max-width: 100px;
+  }
+  &:hover,
+  &:focus {
+    background-color: $gray200;
+  }
+  span {
+    user-select: none;
+  }
+}
+
+.OptionsList {
+  position: relative;
+  overflow-y: auto;
+  flex: 1 1;
+  margin: 0 -20px;
+  margin-bottom: 15px;
+  margin-top: 30px;
+  @include media("<=smartphone") {
+    margin-top: 15px;
+  }
+  @include vertical-scroll();
+}
+
+.ButtonWrapper {
+  margin-top: auto;
+  button {
+    width: 100%;
+    color: #fff;
+  }
+}

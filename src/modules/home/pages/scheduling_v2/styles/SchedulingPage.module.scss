@@ -1,0 +1,3384 @@
+/* --- VARIABLES --- */
+:root {
+  --font-family: 'Inter', sans-serif;
+  --bg-color: #f8f9fa;
+  --container-bg: #ffffff;
+  --border-color: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --brand-color: #4a90e2;
+  --brand-color-dark: #357abd;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+
+  /* NEW: Color Coding */
+  --assigned-bg: #fffbe6;
+  /* Yellow for Shift Assigned (Yellow House theme) */
+  --assigned-text: #854d0e;
+  --assigned-border: #fde047;
+  --assigned-border-darker: #e6c23f;
+  /* Directly defined darker shade for hover */
+
+  --available-bg: #fffbe6;
+  /* Yellow for Available (Yellow House theme) */
+  --available-text: #854d0e;
+  --available-border: #fde047;
+
+  --sickness-bg: #ede9fe;
+  /* Purple for Sickness (On Leave status) */
+  --sickness-text: #5b21b6;
+  --sickness-border: #a78bfa;
+
+  --unavailable-bg: #fee2e2;
+  /* Red for Unavailable */
+  --unavailable-text: #991b1b;
+  --unavailable-border: #fca5a5;
+
+  /* NEW: Vehicle Assignment Colors - Exclusively Blue */
+  --vehicle-bg: #eff6ff;
+  /* Light blue */
+  --vehicle-text: #1e40af;
+  --vehicle-border: #93c5fd;
+
+  /* Confirmed (Manager) - Green */
+  --confirmed-bg: #dcfce7;
+  --confirmed-text: #166534;
+  --confirmed-border: #86efac;
+}
+
+/* --- BASE STYLES --- */
+.schedulingPage {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  padding: 1rem;
+  /* Adjust padding for zoomed-out feel */
+  box-sizing: border-box;
+  /* Ensure padding doesn't add to total width/height */
+  color: var(--text-primary);
+  display: flex;
+  /* Use flex to manage main content and sidebar */
+  position: relative;
+  /* For sidebar positioning */
+
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
+
+  // When sidebar is open on mobile, adjust main content
+  &.sidebarOpen {
+    .container {
+      @media (max-width: 768px) {
+        margin-right: 30%; // Push main content to the left
+        opacity: 0.5; // Dim the main content
+        pointer-events: none; // Disable interaction with main content
+      }
+    }
+  }
+}
+
+.container {
+  flex-grow: 1;
+  /* Allow container to take available space */
+  width: 1400px;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: var(--container-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  overflow: hidden;
+  /* Ensures rounded corners are respected */
+  transition: margin-right 0.3s ease, opacity 0.3s ease;
+  /* Smooth transition for mobile sidebar */
+}
+
+/* --- HEADER --- */
+.header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+
+  .headerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    /* Added margin for header bottom */
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .headerBottom {
+    display: flex;
+    justify-content: space-between;
+    /* Adjusted to space-between for filter and manage shifts */
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    gap: 1rem;
+
+    @media (max-width: 1024px) {
+      /* Adjust for medium screens */
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  }
+}
+
+.viewSwitcher {
+  display: flex;
+  background-color: #f1f3f5;
+  border-radius: 8px;
+  padding: 4px;
+
+  button {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.active {
+      background-color: var(--container-bg);
+      color: var(--text-primary);
+      box-shadow: 0 2px 4px var(--shadow-color);
+    }
+
+    &:hover:not(.active) {
+      background-color: #e9ecef;
+    }
+  }
+}
+
+.headerControls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* Allow search and nav to wrap */
+    gap: 0.75rem;
+  }
+}
+
+.weekNavigator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f1f3f5;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+
+  .navIcon {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+
+    &:hover {
+      color: var(--text-primary);
+    }
+  }
+
+  .calendarIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  background-color: #f1f3f5;
+  border-radius: 8px;
+  padding: 0.6rem;
+  flex-grow: 1;
+  /* Allow search to take available space */
+  max-width: 250px;
+  /* Limit max width for desktop */
+
+  .searchIcon {
+    width: 20px;
+    height: 20px;
+    color: var(--text-secondary);
+    margin-right: 0.5rem;
+  }
+
+  .searchInput {
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    width: 100%;
+
+    /* Take full width of container */
+    &::placeholder {
+      color: var(--text-secondary);
+    }
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+}
+
+.manageShiftsButton {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  background-color: var(--brand-color);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  &:hover {
+    background-color: var(--brand-color-dark);
+  }
+
+  &.highlightedButton {
+    /* Highlight for manage shifts button */
+    background-color: var(--assigned-border);
+    /* Yellow highlight */
+    color: var(--assigned-text);
+
+    &:hover {
+      background-color: var(--assigned-border-darker);
+      /* Use new darker variable */
+    }
+  }
+
+  &.downloadButton {
+    /* NEW: Style for download button - now yellow, icon only */
+    background-color: var(--assigned-border);
+    /* Yellow */
+    color: var(--assigned-text);
+    padding: 0.6rem;
+    /* Adjust padding for icon only */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    /* Fixed width for square button */
+    height: 40px;
+
+    /* Fixed height for square button */
+    &:hover {
+      background-color: var(--assigned-border-darker);
+      /* Darker yellow */
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+/* Filter Options Styling */
+.filterOptions {
+  display: flex;
+  background-color: #f1f3f5;
+  border-radius: 8px;
+  padding: 4px;
+  flex-wrap: wrap;
+  /* Allow buttons to wrap on smaller screens */
+  gap: 4px;
+  /* Small gap between filter buttons */
+
+  button {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.activeFilter {
+      background-color: var(--brand-color);
+      color: white;
+      box-shadow: 0 2px 4px var(--shadow-color);
+    }
+
+    &:hover:not(.activeFilter) {
+      background-color: #e9ecef;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+
+    button {
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+}
+
+/* NEW: Confirmation Filter (Dropdown) and Sorting Options Styling */
+.confirmationFilter,
+.sortOptions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f1f3f5;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+
+  label {
+    font-weight: 500;
+  }
+
+  .sortSelect {
+    /* Reused for confirmation filter dropdown */
+    background: none;
+    // border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #bbbbbb;
+    padding: 4px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+/* --- SCHEDULING GRID --- */
+.gridContainer {
+  padding: 1.5rem;
+  overflow: auto;
+  /* Allows horizontal and vertical scrolling for the table */
+  position: relative;
+  /* Needed for sticky children */
+  max-height: calc(100vh - 250px);
+  /* Adjust based on your header/footer height */
+}
+
+.schedulingGrid {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  /* Crucial for sticky columns with explicit widths */
+  min-width: 800px;
+  /* Ensure table doesn't shrink too much */
+
+  thead,
+  tbody {
+    display: table-header-group;
+  }
+
+  tr {
+    display: table-row;
+  }
+
+  /* Ensure th and td are table-cells */
+  th,
+  td {
+    padding: 0.5rem;
+    text-align: left;
+    vertical-align: top;
+    display: table-cell;
+    /* Explicitly set to table-cell */
+    width: auto;
+    /* Default, overridden by specific rules */
+  }
+
+  /* Make the entire table header (including date/day names) sticky */
+  thead {
+    position: sticky;
+    top: -17px;
+    /* User's change */
+    z-index: 20;
+    /* Ensure it stays above grid cells when scrolling vertically */
+    background-color: var(--container-bg);
+    /* Ensure header background is solid */
+    box-shadow: 0 2px 4px var(--shadow-color);
+    /* Add a subtle shadow for separation */
+  }
+
+  th {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding-bottom: 1.5rem;
+    /* Increased padding for more height */
+    padding-top: 1rem;
+    /* Added padding to top */
+    min-width: 140px;
+    /* Minimum width for date columns */
+    background-color: var(--container-bg);
+    /* Ensure all header cells have a background */
+    width: 140px;
+    /* Explicit width for date columns */
+    padding-left: 0;
+    /* User's change */
+    padding-right: 0;
+    /* User's change */
+
+    &.dateHeader {
+      /* Styling for date headers (Tue 22) */
+      text-align: center;
+      /* Center the text within the th */
+    }
+
+    .dateHeaderContent {
+      /* Wrapper inside th for flex content */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      /* Make it fill the th vertically */
+      width: 100%;
+      /* Make it fill the th horizontally */
+      font-size: 1.25rem;
+      /* Increased font size for calendar date */
+      font-weight: bold;
+      /* Bold the numbers */
+    }
+
+    .dateNumber {
+      /* Style for the actual date (e.g., Tue 22) */
+      font-size: 15px;
+      /* Even bigger date */
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .dailySummaryIcons {
+      /* NEW: Style for daily shift counts with symbols */
+      display: flex;
+      align-items: center;
+      /* Align items vertically */
+      justify-content: center;
+      /* Center horizontally */
+      gap: 0.5rem;
+      /* Space between symbols */
+      font-size: 1.28rem;
+      /* Slightly increased for better readability */
+      font-weight: 600;
+      color: var(--text-secondary);
+
+      span {
+        display: flex;
+        align-items: center;
+        gap: 0.2em;
+        /* Small gap between number and symbol */
+        white-space: nowrap;
+        /* Prevent wrapping */
+        cursor: pointer;
+
+        /* Make clickable */
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+
+      .separator {
+        display: inline-block;
+        /* Ensure it's a block for height/width */
+        width: 2px;
+        /* Make it bold */
+        height: 1.5rem;
+        /* Make it longer */
+        background-color: black;
+        /* Make it black */
+        margin: 0 3px;
+        /* User's change */
+      }
+
+      // Specific icon colors for clarity
+      span:nth-child(1) {
+        color: #f97316;
+      }
+
+      /* Driver Unconfirmed - Orange */
+      span:nth-child(2) {
+        color: #22c55e;
+      }
+
+      /* Driver Confirmed - Green */
+      span:nth-child(4) {
+        color: #dc3545;
+      }
+
+      /* Manager Outstanding - Red (after separator) */
+      span:nth-child(5) {
+        color: var(--brand-color);
+      }
+
+      /* Manager Confirmed - Blue (after separator) */
+    }
+
+    &.currentDayHighlight {
+      /* Highlight for current day header */
+      background-color: var(--assigned-bg);
+
+      /* Yellow highlight */
+      .dateNumber,
+      .dailySummaryIcons {
+        color: var(--assigned-text);
+      }
+
+      .dailySummaryIcons span {
+        color: var(--assigned-text);
+        /* Ensure symbols also change color */
+      }
+
+      .dailySummaryIcons span:nth-child(1) {
+        color: #f97316;
+      }
+
+      /* Driver Unconfirmed - Orange */
+      span:nth-child(2) {
+        color: #22c55e;
+      }
+
+      /* Driver Confirmed - Green */
+      span:nth-child(4) {
+        color: #dc3545;
+      }
+
+      /* Manager Outstanding - Red */
+      span:nth-child(5) {
+        color: var(--brand-color);
+      }
+
+      /* Manager Confirmed - Blue */
+    }
+  }
+
+  .employeeHeader {
+    min-width: 150px;
+    /* Minimum width for employee column header */
+    width: 150px;
+
+    /* Explicit width for employee header */
+    .employeeHeaderContent {
+      /* NEW: For "View By Workforce" label */
+      font-size: 1.25rem;
+      /* Match calendar date font size */
+      font-weight: bold;
+      /* Match calendar date font weight */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+  }
+
+  /* Sticky employee name column cell */
+  .employeeCell {
+    position: sticky;
+    left: -15px;
+    /* User's change */
+    z-index: 10;
+    /* Ensure it stays above other cells, but below the main header */
+    background-color: var(--container-bg);
+    /* Match table background to cover content */
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: 500;
+    min-width: 150px;
+    /* Ensure minimum width */
+    width: 150px;
+    /* Explicitly set width to ensure full coverage when scrolling horizontally */
+    border-right: 1px solid var(--border-color);
+    /* Visual separation */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+    /* Add shadow for visual depth when sticky */
+
+    .employeeContentWrapper {
+      /* Wrapper inside td for flex content */
+      display: flex;
+      flex-direction: column;
+      /* Stack avatar and name vertically */
+      align-items: center;
+      /* Center horizontally */
+      justify-content: center;
+      /* Center vertically */
+      gap: 0.25rem;
+      /* Small gap between avatar and name */
+      height: 100%;
+      /* Ensure it fills the td vertically */
+      width: 100%;
+      /* Ensure it fills the td horizontally */
+    }
+
+    span {
+      /* Employee name text */
+      font-size: 1.125rem;
+      /* Increased font size to match shift headings */
+      font-weight: 700;
+      /* Bold to match shift headings */
+      text-align: center;
+      /* Ensure text is centered */
+    }
+
+    .employeeAvatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+  }
+
+  /* Ensure the top-left corner (employee header) is sticky and on top of everything else */
+  thead th:first-child {
+    position: sticky;
+    left: -15px;
+    /* User's change */
+    z-index: 21;
+    /* Highest z-index to be on top of other sticky headers/cells */
+    background-color: var(--container-bg);
+    /* Match header background */
+    width: 150px;
+    /* Explicitly set width */
+    border-right: 1px solid var(--border-color);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+    /* Add shadow for visual depth */
+  }
+
+  .dateDetails {
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+    color: #adb5bd;
+  }
+
+  .employeeRow {
+    border-top: 1px solid var(--border-color);
+  }
+}
+
+.shiftCell {
+  height: 135px;
+  /* Increased height to accommodate 3 sections (3 * ~45px) */
+  padding: 4px;
+  display: flex;
+  /* Use flexbox for internal layout */
+  flex-direction: column;
+  /* Stack availability, assigned, and vehicle vertically */
+  gap: 2px;
+
+  /* Small gap between the boxes */
+  &.isOver {
+    background-color: var(--blue-light);
+  }
+}
+
+.availabilityBox,
+.assignedShiftBox,
+.assignedVehicleBox {
+  /* Added assignedVehicleBox */
+  flex-grow: 1;
+  /* Make them take equal height */
+  min-height: 40px;
+  /* Set a minimum height for consistent sizing */
+  display: flex;
+  /* For internal content alignment */
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  /* Slightly smaller border-radius than outer cell */
+  overflow: hidden;
+  /* Hide overflow if content is too large */
+  position: relative;
+  /* For nested shift card/button positioning */
+  width: 100%;
+  /* Ensure they take full width of cell */
+  padding: 0.25rem;
+  /* Added padding for better spacing within boxes */
+  box-sizing: border-box;
+  /* Include padding in width/height calculation */
+}
+
+.emptyBox {
+  width: 100%;
+  height: 100%;
+  border: 1px dashed var(--border-color);
+  /* Visual cue for empty slot */
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  /* Increased font size for empty box text */
+  font-weight: 600;
+  text-align: center;
+  padding: 0.5rem;
+  /* Add padding to prevent text from touching edges */
+}
+
+/* --- SHIFT CARD --- */
+.shiftCard {
+  padding: 0.5rem;
+  padding-left: 1.75rem;
+  /* Increased padding for top-left icon */
+  padding-right: 1.75rem;
+  /* Increased padding for top-right icon */
+  border-radius: 8px;
+  border: 1px solid;
+  font-size: 1.2rem;
+  height: 100%;
+  width: 100%;
+  /* Ensure it takes full width of its container */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  /* For confirmation icon positioning */
+
+  .shift_name {
+    /* Changed from .shiftName */
+    font-weight: 700;
+    font-size: 1.25rem;
+    /* Increased font size for headings (x2.5) */
+    line-height: 1.2;
+    /* Adjust line height for better spacing */
+  }
+
+  .shiftTimesInfo {
+    /* For Times & Van Info */
+    font-size: 1rem;
+    /* Increased font size (x2) */
+    font-weight: normal;
+    /* Unbolded */
+    color: var(--text-secondary);
+  }
+
+  &.cancellationRequested {
+    background-color: #fff1f2 !important; // Very light red/pink background
+    border-color: #e11d48 !important; // Bright red border
+    color: #9f1239 !important; // Dark red text
+    border-width: 2px; // Thicker border to highlight
+
+    // Optional: make the name even bolder
+    .shift_name {
+      color: #9f1239;
+    }
+
+    .shiftTimesInfo {
+      color: #be123c;
+    }
+  }
+
+  /* Color Coding Implementations */
+  &.assigned {
+    background-color: var(--assigned-bg);
+    border-color: var(--assigned-border);
+    color: var(--assigned-text);
+  }
+
+  &.available {
+    /* Now yellow */
+    background-color: var(--available-bg);
+    border-color: var(--available-border);
+    color: var(--available-text);
+  }
+
+  &.onleave {
+    /* Now purple (Sickness) */
+    background-color: var(--sickness-bg);
+    border-color: var(--sickness-border);
+    color: var(--sickness-text);
+  }
+
+  &.unavailable {
+    /* Red remains */
+    background-color: var(--unavailable-bg);
+    border-color: var(--unavailable-border);
+    color: var(--unavailable-text);
+  }
+
+  &.confirmed {
+    /* NEW: Green for Confirmed (Manager) */
+    background-color: var(--confirmed-bg);
+    border-color: var(--confirmed-border);
+    color: var(--confirmed-text);
+  }
+
+
+  /* Manager Outstanding Confirmation (Top Left) */
+  .confirmShiftButton {
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    padding: 0.25rem;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px var(--shadow-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+
+    .confirmIcon {
+      width: 1rem;
+      height: 1rem;
+      color: #f97316;
+      /* Orange-500 equivalent */
+    }
+  }
+
+  /* Manager Confirmed Indicator (Bottom Right) */
+  .confirmedIndicator {
+    position: absolute;
+    bottom: 0.25rem;
+    right: 0.25rem;
+    padding: 0.25rem;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px var(--shadow-color);
+
+    .confirmedIcon {
+      width: 1rem;
+      height: 1rem;
+      color: #22c55e;
+      /* Green-600 equivalent */
+    }
+  }
+
+  /* Driver Unconfirmed Indicator (Top Left) */
+  .driverUnconfirmedIndicator {
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    padding: 0.25rem;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px var(--shadow-color);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      transform: scale(1.15);
+      background-color: #fefce8;
+    }
+
+    .driverUnconfirmedIcon {
+      width: 1rem;
+      height: 1rem;
+      color: #dc3545;
+      /* Red / Amber for unconfirmed question mark */
+    }
+  }
+
+  /* Driver Confirmed Indicator (Bottom Right) */
+  .driverConfirmedIndicator {
+    position: absolute;
+    bottom: 0.25rem;
+    right: 0.25rem;
+    padding: 0.25rem;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px var(--shadow-color);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      transform: scale(1.15);
+      background-color: #f0fdf4;
+    }
+
+    .driverConfirmedIcon {
+      width: 1rem;
+      height: 1rem;
+      color: #22c55e;
+      /* Green-600 equivalent */
+    }
+  }
+
+  /* Remove Assigned Shift Button (Top Right) */
+  .removeShiftButton {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    padding: 0.25rem;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px var(--shadow-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    color: #dc3545;
+    /* Red color for remove icon */
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+
+    .removeIcon {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+}
+
+/* NEW: Assigned Vehicle Specific Styles */
+.assignedVehicleBox {
+  background-color: var(--vehicle-bg);
+  border: 1px solid var(--vehicle-border);
+  color: var(--vehicle-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* For remove button */
+  padding: 0.25rem;
+  /* Consistent padding */
+  box-sizing: border-box;
+  /* Ensure padding is included in size */
+
+
+  .vehicleAssigned {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    /* Consistent with other info */
+    padding: 0.5rem 1.5rem;
+    /* Adjusted padding for content */
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+    position: relative;
+    /* For inner remove button */
+  }
+
+  .vehicleIcon {
+    width: 1rem;
+    height: 1rem;
+    color: var(--vehicle-text);
+    margin-right: 0.5rem;
+    /* Increased margin to separate icon from text */
+  }
+
+  .assignVehicleButton {
+    background-color: #e9ecef;
+    /* Light grey for button */
+    color: var(--text-secondary);
+    border: 1px dashed var(--border-color);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 90%;
+    /* Make button fill most of the space */
+    height: 90%;
+    /* Make button fill most of the space */
+    display: flex;
+    /* Ensure content inside button is centered */
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: #dee2e6;
+    }
+  }
+
+  .removeVehicleButton {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    padding: 0.25rem;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px var(--shadow-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    color: #dc3545;
+    /* Red color for remove icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+
+    .removeIcon {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+}
+
+
+/* --- SIDEBAR --- */
+.sidebarOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 384px;
+  /* w-96 */
+  height: 100%;
+  background-color: var(--container-bg);
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  /* p-6 */
+
+  @media (max-width: 768px) {
+    width: 70%; // Make it narrower on mobile
+  }
+}
+
+.sidebarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  /* mb-6 */
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 10px;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .closeSidebarButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+
+    &:hover {
+      color: var(--text-primary);
+    }
+  }
+}
+
+.sidebarBody {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+  /* pr-2 for scrollbar */
+}
+
+.noShiftsMessage {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.draggableShiftWrapper {
+  margin-bottom: 0.5rem;
+  /* mb-2 */
+}
+
+.draggableShift {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  /* p-3 */
+  background-color: #f8f9fa;
+  /* gray-50 */
+  border-radius: 8px;
+  /* rounded-lg */
+  box-shadow: 0 1px 3px var(--shadow-color);
+  /* shadow-sm */
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  .dragHandle {
+    color: #adb5bd;
+    /* gray-400 */
+    margin-right: 0.5rem;
+    /* mr-2 */
+    width: 1rem;
+    /* w-4 */
+    height: 1rem;
+    /* h-4 */
+  }
+
+  .draggableShiftInfo {
+    flex-grow: 1;
+    font-weight: 600;
+    font-size: 1.25rem;
+    /* text-sm */
+  }
+
+  .shiftTimes {
+    font-size: 1.25rem;
+    /* text-xs */
+    color: #6c757d;
+    /* gray-600 */
+  }
+
+  .deleteShiftButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #dc3545;
+      /* red-500 */
+    }
+
+    .deleteIcon {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+}
+
+.sidebarFooter {
+  padding-top: 1.5rem;
+  /* pt-6 */
+  border-top: 1px solid var(--border-color);
+}
+
+.createShiftHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  /* mb-4 */
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .clearButton {
+    font-size: 1.2rem;
+    /* text-sm */
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--text-primary);
+    }
+  }
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+  /* mb-4 */
+
+  label {
+    display: block;
+    font-size: 1.2rem;
+    /* text-sm */
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    /* mb-1 */
+    color: var(--text-secondary);
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  background-color: #f1f3f5;
+  /* gray-100 */
+  border: 1px solid var(--border-color);
+  /* border-gray-200 */
+  border-radius: 8px;
+  /* rounded-lg */
+  padding: 0.5rem 0.75rem;
+  /* p-2 */
+
+  .inputField {
+    flex-grow: 1;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 1.2rem;
+    /* text-sm */
+  }
+
+  .inputIcon {
+    color: var(--text-secondary);
+    /* gray-500 */
+    width: 1rem;
+    /* w-4 */
+    height: 1rem;
+    /* h-4 */
+  }
+}
+
+.formActions {
+  display: flex;
+  gap: 1rem;
+  /* gap-4 */
+  margin-top: 1.5rem;
+  /* mt-6 */
+
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    /* py-3 */
+    font-size: 1.25rem;
+    /* text-sm */
+    font-weight: 600;
+    border-radius: 8px;
+    /* rounded-lg */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  .draftButton {
+    background-color: #e9ecef;
+    /* gray-200 */
+    color: var(--text-primary);
+
+    /* gray-800 */
+    &:hover {
+      background-color: #dee2e6;
+      /* gray-300 */
+    }
+  }
+
+  .publishButton {
+    background-color: var(--brand-color);
+    /* blue-500 */
+    color: white;
+
+    &:hover {
+      background-color: var(--brand-color-dark);
+      /* blue-600 */
+    }
+  }
+}
+
+.fleetSection {
+  font-size: 1rem;
+
+  .formGroup label {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .inputField,
+  .fleetStatusSelect,
+  .fleetNotes,
+  textarea,
+  select {
+    font-size: 1.2rem;
+  }
+
+  .cardUser strong {
+    font-size: 1.25rem;
+  }
+
+  .cardUser p {
+    font-size: 1.2rem;
+  }
+}
+
+.fleetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+}
+
+.fleetClearButton {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--text-primary);
+  }
+}
+
+.fleetStatusSelect {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1.2rem;
+  background-color: #f1f3f5;
+  cursor: pointer;
+  outline: none;
+}
+
+.fleetNotes {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: #f1f3f5;
+  padding: 0.65rem 0.75rem;
+  font-size: 1.2rem;
+  resize: vertical;
+  outline: none;
+}
+
+.fleetList {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.fleetItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.fleetItemVor {
+  border-color: #f5c2c7;
+  background: #fff5f5;
+  color: #b02a37;
+}
+
+.fleetItemMain {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  font-size: 1.2rem;
+}
+
+.fleetRegistration {
+  font-weight: 700;
+  // cursor: help;
+  cursor: pointer;
+}
+
+.fleetStatus {
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.12rem 0.45rem;
+}
+
+.statusActive {
+  background: #d1e7dd;
+  color: #0f5132;
+}
+
+.statusVor {
+  background: #f8d7da;
+  color: #842029;
+}
+
+.fleetActions {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.editFleetButton,
+.deleteFleetButton {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 1.2rem;
+  padding: 0.35rem 0.55rem;
+  // cursor: pointer;
+}
+
+.deleteFleetButton {
+  color: #b02a37;
+}
+
+/* --- PAGINATION --- */
+.paginationNav {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  /* py-4 */
+}
+
+.paginationList {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+  /* space-x-2 */
+}
+
+.paginationButton {
+  padding: 0.5rem 0.75rem;
+  /* px-3 py-1 */
+  border-radius: 6px;
+  /* rounded-md */
+  background-color: #f1f3f5;
+  /* gray-200 */
+  color: var(--text-secondary);
+  /* gray-700 */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #e9ecef;
+    /* gray-300 */
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.highlightedButton {
+    /* Highlight for active pagination button */
+    background-color: var(--assigned-border);
+    /* Yellow highlight */
+    color: var(--assigned-text);
+
+    &:hover {
+      background-color: var(--assigned-border-darker);
+      /* Use new darker variable */
+    }
+  }
+}
+
+/* --- Vehicle Assignment Modal --- */
+.vehicleModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--container-bg);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 60;
+  width: 90%;
+  max-width: 400px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vehicleModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .closeModalButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+
+    &:hover {
+      color: var(--text-primary);
+    }
+  }
+}
+
+.vehicleModalBody {
+  .formGroup {
+    margin-bottom: 0;
+    /* Override default formGroup margin if needed */
+  }
+
+  .vehicleSelect {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f1f3f5;
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+      border-color: var(--brand-color);
+      box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+    }
+  }
+
+  .disabledOption {
+    /* NEW: Style for disabled vehicle options */
+    color: #adb5bd;
+    /* Grey out text */
+    background-color: #e9ecef;
+    /* Slightly different background */
+  }
+}
+
+.vehicleModalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+
+  button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  .cancelButton {
+    background-color: #e9ecef;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+
+    &:hover {
+      background-color: #dee2e6;
+    }
+  }
+
+  .assignButton {
+    background-color: var(--brand-color);
+    color: white;
+    border: none;
+
+    &:hover {
+      background-color: var(--brand-color-dark);
+    }
+
+    &:disabled {
+      background-color: #adb5bd;
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* NEW: Download Reports Modal */
+.downloadModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--container-bg);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 60;
+  width: 90%;
+  max-width: 400px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.downloadModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .closeModalButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+
+    &:hover {
+      color: var(--text-primary);
+    }
+  }
+}
+
+.downloadModalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  /* Gap between report buttons */
+
+  .reportButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background-color: #f1f3f5;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      background-color: #e9ecef;
+      border-color: var(--brand-color);
+    }
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: var(--text-secondary);
+    }
+  }
+}
+
+.sortSelectPreview {
+  /* Reused for confirmation filter dropdown */
+  background: none;
+  // border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #bbbbbb;
+  padding: 4px;
+}
+
+.dailyPreviewModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--container-bg);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 70;
+  width: min(1100px, 95vw);
+  max-height: 88vh;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 9999;
+}
+
+.dailyPreviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0.2rem 0 0 0;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+  }
+  .saveRosterButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0.6rem;
+    background-color: #10b981;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: #059669;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+  .downloadPreviewButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    background-color: var(--assigned-border, #F5D020);
+    color: var(--assigned-text, #451a03);
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--assigned-border-darker, #eab308);
+    }
+  }
+  .closeModalButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: var(--text-primary);
+    }
+  }
+}
+
+.dailyPreviewControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem;
+
+  label {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+}
+
+.dailyPreviewBody {
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.dailyPreviewSummary {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.dailyPreviewBadge {
+  background: #e2e8f0;
+  color: #0f172a;
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.dailyPreviewNotice {
+  margin: 0 0 0.5rem 0;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #facc15;
+  background: #fef9c3;
+  color: #713f12;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.dailyPreviewGroup {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+.dailyPreviewGroupTitle {
+  background: rgba(17, 24, 39, 0.8);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 0.48rem 0.65rem;
+}
+
+.dailyPreviewTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  th,
+  td {
+    border: 1px solid #111827;
+    padding: 0.5rem 0.6rem;
+    font-size: 1.1rem;
+    color: #111827;
+    vertical-align: middle;
+  }
+
+  th {
+    background: rgba(255, 255, 255, 0.78);
+    font-weight: 800;
+    text-transform: uppercase;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  td {
+    background: transparent;
+    font-weight: 600;
+  }
+
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 24%;
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 12%;
+  }
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 12%;
+  }
+
+  th:nth-child(4),
+  td:nth-child(4) {
+    width: 18%;
+  }
+
+  th:nth-child(5),
+  td:nth-child(5) {
+    width: 12%;
+  }
+
+  th:nth-child(6),
+  td:nth-child(6) {
+    width: 11%;
+  }
+
+  th:nth-child(7),
+  td:nth-child(7) {
+    width: 13%;
+  }
+}
+
+
+/* --- RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  .schedulingPage {
+    padding: 0.5rem;
+  }
+
+  .container {
+    border-radius: 8px;
+  }
+
+  .header {
+    padding: 1rem;
+
+    .headerTop {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .headerControls {
+      width: 100%;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      /* Allow search and nav to wrap */
+      gap: 0.75rem;
+    }
+  }
+
+  .viewSwitcher {
+    width: 100%;
+
+    button {
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+
+  .weekNavigator {
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  .searchContainer {
+    width: 100%;
+    /* Full width on mobile */
+    max-width: 100%;
+  }
+
+  .manageShiftsButton {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .gridContainer {
+    padding: 0.75rem;
+  }
+
+  .schedulingGrid {
+    min-width: unset;
+    /* Allow table to shrink on small screens */
+  }
+
+  .sidebar {
+    width: 70%; // Make it narrower on mobile
+    padding: 1rem;
+  }
+
+  .formActions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* Adjust sticky behavior for smaller screens if needed,
+     though the current sticky setup should work */
+  .employeeCell,
+  thead th:first-child {
+    min-width: 120px;
+    /* Adjust if 150px is too wide on mobile */
+  }
+}
+
+.cancellationHighlight {
+  background-color: rgba(255, 77, 77, 0.1) !important; // Light red background
+  border: 2px solid #ff4d4d !important;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 10px rgba(255, 77, 77, 0.2);
+  }
+}
+
+.cancelRequestIcon {
+  color: #ff4d4d;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.notificationInbox {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  width: 300px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  border: 1px solid #eee;
+
+  .inboxHeader {
+    padding: 12px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .inboxItem {
+    padding: 12px;
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background: #f9f9f9;
+    }
+
+    .inboxContent p {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    .inboxContent span {
+      font-size: 11px;
+      color: #888;
+    }
+  }
+}
+
+.rightSidebar {
+  right: 0;
+  left: auto;
+  border-left: 1px solid #ddd;
+}
+
+.requestCard {
+  background: #fdfdfd;
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+
+  .requestActions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+
+    button {
+      flex: 1;
+      padding: 6px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .approveBtn {
+      background: #ff4d4d;
+      color: white;
+      border: none;
+    }
+
+    .rejectBtn {
+      background: white;
+      border: 1px solid #ddd;
+    }
+  }
+}
+
+.cancellationButton {
+  background: transparent !important;
+  color: #1a1a1a !important;
+  padding: 0;
+  border-radius: 0;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+
+  &:hover {
+    background: transparent !important;
+    transform: translateX(-2px);
+  }
+
+  &.hasPending {
+    box-shadow: none;
+    border-color: transparent;
+  }
+}
+
+.countBadge {
+  background-color: #1a1a1a; // Dark badge on yellow button
+  color: #ffffff;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 11px;
+  margin-left: 4px;
+}
+
+.Cancel_Content_box {
+  font-size: 22px;
+  font-weight: 800;
+  color: #dc2626;
+  display: inline-block;
+  line-height: 1;
+  transform: translateY(-3px);
+}
+
+.Cancel_Content_box_Cance {
+  display: none;
+}
+
+.sidebarHeader_Txt h2 {
+  font-size: 16px !important;
+}
+
+.sidebarHeader_Txt p {
+  font-size: 14px !important;
+}
+
+.warningIcon {
+  font-size: 20px;
+  color: #ca8a04;
+  /* Darker yellow for visibility */
+  animation: pulse 2s infinite;
+  display: inline-block;
+  transform: none;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Sidebar & Panel Styles */
+.sidebarBody {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.requestCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s, border-color 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--assigned-border);
+  }
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+
+  .shiftTag,
+  .availTag {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  /* Updated to Yellow Theme */
+  .shiftTag {
+    background: var(--assigned-bg);
+    color: var(--assigned-text);
+    border: 1px solid var(--assigned-border);
+  }
+
+  .availTag {
+    background: #f1f5f9;
+    color: #64748b;
+  }
+
+  .cardDate {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+}
+
+.cardUser {
+  margin-bottom: 12px;
+
+  strong {
+    font-size: 15px;
+    color: #1e293b;
+    display: block;
+  }
+
+  p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 2px 0;
+  }
+
+  small {
+    color: #94a3b8;
+  }
+}
+
+.cardReason {
+  background: #fffcf0;
+  /* Light yellow tint */
+  padding: 10px;
+  border-radius: 6px;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  border: 1px dashed var(--assigned-border);
+
+  p {
+    font-size: 12px;
+    font-style: italic;
+    color: #713f12;
+    margin: 0;
+  }
+
+  svg {
+    color: var(--assigned-border-darker);
+    flex-shrink: 0;
+  }
+}
+
+.reviewBtn {
+  width: 100%;
+  padding: 8px;
+  background: var(--assigned-border);
+  color: var(--assigned-text);
+  border: 1px solid var(--assigned-border-darker);
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--assigned-border-darker);
+  }
+}
+
+.availabilityQuickActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 0 7px 0;
+}
+
+.availabilityCountBubble {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: #000;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 46px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+
+  &.targetMet {
+    background-color: #61b15a;
+    /* A vibrant green similar to the mockup */
+  }
+
+  &.targetMissed {
+    background-color: #e53e3e;
+    /* A strong red similar to the mockup */
+  }
+}
+
+.bubbleWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dailyTargetPill {
+  position: absolute;
+  left: 35px !important;
+  top: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  z-index: 3;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+
+  &.dailyTargetPillExpanded {
+    border-radius: 12px;
+    padding: 2px 8px;
+    width: auto;
+    height: 24px;
+  }
+
+  .targetIconBtn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .targetEmoji {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+
+  .targetCollapsedValue {
+    font-size: 11px;
+    font-weight: 700;
+    color: #334155;
+    margin-left: 2px;
+  }
+
+  input {
+    width: 20px;
+    border: none;
+    background: transparent;
+    font-size: 11px;
+    font-weight: 700;
+    color: #334155;
+    text-align: center;
+    outline: none;
+    padding: 0;
+    margin-left: 4px;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    -moz-appearance: textfield;
+  }
+}
+
+.infoButton {
+  background: transparent !important;
+  color: #334155;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  border: none;
+
+  &:hover {
+    background: transparent !important;
+    color: #0f172a;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.previewButton {
+  background: transparent !important;
+  color: #334155;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  border: none;
+
+  &:hover {
+    background: transparent !important;
+    color: #0f172a;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.headerActionButton {
+  background: transparent !important;
+  color: #64748b !important;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor !important;
+    stroke-width: 1.55;
+    filter: none;
+    opacity: 0.95;
+  }
+
+  &:hover {
+    color: #475569 !important;
+
+    svg {
+      opacity: 1;
+    }
+  }
+}
+
+.actionAssetIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+  transform: scale(1.25);
+  transform-origin: center;
+}
+
+.availabilityRangeText {
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: #1e293b;
+}
+
+.unconfirmedPanelCard {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.1);
+  height: 100%;
+
+  h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #0f172a;
+    font-weight: 700;
+  }
+}
+
+.unconfirmedPanelCount {
+  font-size: 36px;
+  font-weight: 800;
+  color: #dc2626;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.unconfirmedPanelList {
+  max-height: 85%;
+  // max-height: 420px;
+  // height: 85%;
+  overflow-y: auto;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 10px;
+}
+
+.unconfirmedRow {
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 8px;
+}
+
+.unconfirmedName {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.unconfirmedDates {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  color: #475569;
+}
+
+.unconfirmedEmpty {
+  margin: 0;
+  font-size: 14px;
+  color: #334155;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 2000;
+}
+
+.customModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  z-index: 2001;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.modalHeader {
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafafa;
+
+  h3 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 18px;
+  }
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+  }
+}
+
+.modalBody {
+  padding: 20px;
+
+  .infoRow {
+    margin-bottom: 12px;
+
+    label {
+      display: block;
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    span {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .reasonBox {
+      background: var(--assigned-bg);
+      padding: 12px;
+      border-radius: 8px;
+      border-left: 4px solid var(--assigned-border);
+      font-style: italic;
+      color: var(--assigned-text);
+    }
+  }
+}
+
+.inputSection {
+  margin-top: 20px;
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    resize: none;
+    font-family: inherit;
+
+    &:focus {
+      outline: none;
+      border-color: var(--assigned-border-darker);
+    }
+  }
+}
+
+.modalFooter {
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+
+  button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .btnSecondary {
+    background: white;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+
+    &:hover {
+      background: #f8fafc;
+    }
+  }
+
+  .btnPrimary {
+    background: var(--assigned-border);
+    border: 1px solid var(--assigned-border-darker);
+    color: var(--assigned-text);
+
+    &:hover {
+      background: var(--assigned-border-darker);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   PAGE TAB NAVIGATION
+═══════════════════════════════════════════════ */
+.pageTabNav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 2px solid var(--border-color);
+  padding: 0 1.5rem;
+  background: var(--container-bg);
+  flex-shrink: 0;
+}
+
+.pageTabBtn {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 0.85rem 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--text-primary);
+  }
+}
+
+.pageTabActive {
+  color: var(--text-primary) !important;
+  border-bottom-color: #1c1c1e !important;
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════
+   ROSTERING OVERVIEW TAB
+═══════════════════════════════════════════════ */
+.rosterTab {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.5rem;
+  gap: 1rem;
+  min-height: 500px;
+}
+
+.rosterDateBar {
+  display: flex;
+  align-items: center;
+}
+
+.rosterDateLabel {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: #f8f9fa;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+}
+
+/* Service filter pills */
+.rosterServicePills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.serviceFilterPill {
+  border: 1.5px solid var(--border-color);
+  background: var(--container-bg);
+  color: var(--text-primary);
+  border-radius: 20px;
+  padding: 0.3rem 0.85rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  &:hover {
+    border-color: #aaa;
+  }
+}
+
+.serviceFilterPillActive {
+  font-weight: 600;
+}
+
+.pillAbbrev {
+  font-size: 1.2rem;
+  opacity: 0.75;
+}
+
+/* Main layout */
+.rosterLayout {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 1rem;
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rosterSwimlanes {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Individual swimlane */
+.swimlane {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--container-bg);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.swimlaneHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: #f8f9fa;
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.swimlaneTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.swimlaneAbbrev {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  letter-spacing: 0.03em;
+}
+
+.swimlaneName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.swimlaneQuota {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.quotaOver {
+  color: #dc2626 !important;
+  font-weight: 600;
+}
+
+.quotaBar {
+  width: 80px;
+  height: 6px;
+  background: #e9ecef;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.quotaBarFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* Wave group */
+.waveGroup {
+  padding: 0.6rem 1rem 0.75rem;
+  border-bottom: 1px solid #f1f3f5;
+
+  &:last-child { border-bottom: none; }
+}
+
+.waveGroupHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.waveTag {
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: #1c1c1e;
+  color: #fff;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.waveTime {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.driverCards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.emptyWaveSlot {
+  border: 1.5px dashed var(--border-color);
+  border-radius: 8px;
+  padding: 0.85rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  background: #fafafa;
+}
+
+/* Driver card */
+.driverCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  gap: 0.75rem;
+  transition: box-shadow 0.15s;
+
+  &:hover {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  }
+}
+
+.driverCardLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.driverBadge {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+}
+
+.driverCardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.driverCardName {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.driverConfirmedBadge {
+  font-size: 1.2rem;
+  color: #166534;
+  font-weight: 500;
+}
+
+.driverCardRight {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.vanAssigned {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e40af;
+  background: #eff6ff;
+  border: 1px solid #93c5fd;
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+}
+
+.vanSelect {
+  font-size: 1.2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 0.2rem 0.4rem;
+  background: var(--container-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+
+  &:focus {
+    border-color: var(--brand-color);
+  }
+}
+
+.removeDriverBtn {
+  background: none;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  border-radius: 5px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  flex-shrink: 0;
+
+  &:hover {
+    background: #fee2e2;
+  }
+}
+
+/* Right side panels */
+.rosterSidePanels {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: sticky;
+  top: 1rem;
+}
+
+.rosterSideCard {
+  background: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.rosterSideCardTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.rosterSideDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.availableDriversCount {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.rosterSideList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-height: 240px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar { width: 4px; }
+  &::-webkit-scrollbar-thumb { background: #dee2e6; border-radius: 2px; }
+}
+
+.rosterSideListItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  padding: 0.3rem 0.4rem;
+  border-radius: 6px;
+  transition: background 0.1s;
+
+  &:hover { background: #f8f9fa; }
+}
+
+.rosterSideAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--border-color);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════
+   SERVICE CONFIGURATIONS TAB
+═══════════════════════════════════════════════ */
+.serviceConfigTab {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.serviceConfigTopBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.serviceConfigCount {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
+.createServiceBtn {
+  background: var(--assigned-border);
+  color: var(--assigned-text);
+  border: 1px solid var(--assigned-border-darker);
+  border-radius: 8px;
+  padding: 0.55rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover { background: var(--assigned-border-darker); }
+}
+
+.serviceConfigTableWrap {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: auto;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.serviceConfigTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.05rem;
+
+  thead tr {
+    background: #f8f9fa;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  th {
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 0.7rem 1rem;
+    color: var(--text-primary);
+    vertical-align: middle;
+  }
+}
+
+.serviceConfigRow {
+  border-bottom: 1px solid #f1f3f5;
+  transition: background 0.1s;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: #f8f9fa; }
+}
+
+.serviceNameDot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.abbrevBadge {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 5px;
+  letter-spacing: 0.03em;
+}
+
+.linkedWavesRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.linkedWaveChip {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 12px;
+  border: 1.5px solid;
+  white-space: nowrap;
+}
+
+.linkedWaveChipActive {
+  background: #fffbe6;
+  border-color: #fde047;
+  color: #713f12;
+}
+
+.linkedWaveChipInactive {
+  background: #f1f3f5;
+  border-color: #ced4da;
+  color: #495057;
+}
+
+.editRowBtn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+
+  &:hover {
+    background: #f1f3f5;
+    color: var(--text-primary);
+    border-color: #aaa;
+  }
+}
+
+.deleteRowBtn {
+  background: none;
+  border: 1px solid #fee2e2;
+  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+
+  &:hover {
+    background: #fef2f2;
+    color: #dc2626;
+    border-color: #fca5a5;
+  }
+}
+
+.tableActionBtns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Service Config Modal extras */
+.serviceConfigModal {
+  max-width: 460px !important;
+
+  .modalHeader h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+
+  .formGroup label {
+    font-size: 1rem;
+  }
+
+  .modalFooter button {
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
+
+.waveChecklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.25rem;
+}
+
+.waveCheckItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-primary);
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #1c1c1e;
+    cursor: pointer;
+    appearance: auto;
+    -webkit-appearance: checkbox;
+  }
+}
+
+/* Standalone input for modals (not nested in inputWrapper) */
+.modalInput {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  background: #f8f9fa;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.15s;
+
+  &:focus {
+    border-color: var(--brand-color);
+    background: #fff;
+  }
+
+  &::placeholder {
+    color: var(--text-secondary);
+  }
+}
+

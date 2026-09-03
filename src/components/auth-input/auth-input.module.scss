@@ -1,0 +1,76 @@
+@import "src/styles/sass/variables";
+
+.InputWrap {
+  width: 100%;
+  position: relative;
+
+  input {
+    display: block;
+    padding: 1.5rem 5rem 1.5rem 2rem;
+    border: 1px solid $gray100;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 6px;
+    color: $mainBlack;
+    transition: 0.1s;
+    font-size: 1.6rem;
+
+    &.Error {
+      box-shadow: 0 0 0 3px rgba($red300, 0.6);
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px #302b28 inset !important;
+      -webkit-text-fill-color: #ffffff !important;
+      border: 1px solid $gray600;
+    }
+  }
+
+  label {
+    margin-bottom: 8px;
+    display: block;
+    font-size: 16px;
+    color: $mainBlack;
+  }
+}
+
+.ErrorMessageWrap {
+  position: relative;
+}
+
+.ErrorMessage {
+  font-size: 14px;
+  position: absolute;
+  top: 10px;
+  color: $red400;
+}
+
+.Input {
+  position: relative;
+}
+
+.ValidStatusIcon {
+  position: absolute;
+  right: 10px;
+  top: 0;
+}
+
+.ShowIconWrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  box-sizing: content-box;
+  position: absolute;
+  top: 0;
+  path {
+    fill: $secondaryYellow;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
